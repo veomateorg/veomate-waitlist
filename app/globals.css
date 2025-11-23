@@ -10,6 +10,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* VeoMate Brand Colors */
+  --color-veo-blue: #73AFEA;
+  --color-veo-purple: #7374EA;
+  --color-veo-violet: #AD73EA;
 }
 
 @media (prefers-color-scheme: dark) {
