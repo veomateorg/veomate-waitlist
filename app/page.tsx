@@ -266,17 +266,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-6 py-12 bg-gray-50 border-t border-gray-200">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-gray-600 mb-4">
-            &copy; 2024 VeoMate. All rights reserved.
-          </p>
-          <p className="text-sm text-gray-500">
-            Building the future of visual collaboration, one node at a time.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
