@@ -2,22 +2,53 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+
+// Force dynamic rendering since we use Supabase
+export const dynamic = 'force-dynamic';
 
 export default function Home() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Insert email into database (or update if exists)
+      const { error: dbError } = await supabase
+        .from('waitlist')
+        .upsert(
+          {
+            email,
+            completed_signup: false,
+            updated_at: new Date().toISOString()
+          },
+          {
+            onConflict: 'email',
+            ignoreDuplicates: false
+          }
+        )
+        .select();
 
-    // Navigate to complete signup page with email
-    router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
-    setLoading(false);
+      if (dbError) {
+        console.error('Database error:', dbError);
+        setError('Failed to save email. Please try again.');
+        setLoading(false);
+        return;
+      }
+
+      // Navigate to complete signup page with email
+      router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
+    } catch (err) {
+      console.error('Error:', err);
+      setError('An unexpected error occurred. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (
@@ -56,22 +87,27 @@ export default function Home() {
 
           {/* Waitlist Form */}
           <div className="max-w-md mx-auto">
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Joining...' : 'Join Waitlist'}
-              </button>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  className="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+                />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Joining...' : 'Join Waitlist'}
+                </button>
+              </div>
+              {error && (
+                <p className="text-red-500 text-sm text-center">{error}</p>
+              )}
             </form>
           </div>
         </div>
@@ -233,22 +269,27 @@ export default function Home() {
             Join thousands of teams waiting to experience the future of visual collaboration.
           </p>
 
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              className="flex-1 px-6 py-4 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm focus:border-white focus:bg-white/20 focus:outline-none text-white placeholder-white/60 transition-all"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-8 py-4 rounded-full bg-white text-[#7374EA] font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Joining...' : 'Join Waitlist'}
-            </button>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 px-6 py-4 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm focus:border-white focus:bg-white/20 focus:outline-none text-white placeholder-white/60 transition-all"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-8 py-4 rounded-full bg-white text-[#7374EA] font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Joining...' : 'Join Waitlist'}
+              </button>
+            </div>
+            {error && (
+              <p className="text-white text-sm text-center bg-red-500/20 backdrop-blur-sm px-4 py-2 rounded-full">{error}</p>
+            )}
           </form>
         </div>
       </section>

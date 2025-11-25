@@ -2,12 +2,17 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
+
+// Force dynamic rendering since we use Supabase
+export const dynamic = 'force-dynamic';
 
 function CompleteSignupForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -39,19 +44,41 @@ function CompleteSignupForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
 
-    // Simulate API call - Here you would send all data to your backend
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Update the existing waitlist entry with complete information
+      const { error: dbError } = await supabase
+        .from('waitlist')
+        .update({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          country_code: formData.countryCode,
+          phone_number: formData.phoneNumber,
+          company_name: formData.companyName || null,
+          role: formData.role || null,
+          team_size: formData.teamSize || null,
+          hear_about: formData.hearAbout || null,
+          completed_signup: true,
+          updated_at: new Date().toISOString()
+        })
+        .eq('email', email)
+        .select();
 
-    console.log('Complete signup data:', {
-      email,
-      ...formData
-    });
+      if (dbError) {
+        console.error('Database error:', dbError);
+        setError('Failed to save your information. Please try again.');
+        setLoading(false);
+        return;
+      }
 
-    setLoading(false);
-
-    // Redirect to success page or show success message
-    router.push('/welcome');
+      // Redirect to success page
+      router.push('/welcome');
+    } catch (err) {
+      console.error('Error:', err);
+      setError('An unexpected error occurred. Please try again.');
+      setLoading(false);
+    }
   };
 
   if (!email) {
@@ -238,6 +265,13 @@ function CompleteSignupForm() {
                 <option value="other">Other</option>
               </select>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-600 text-sm">{error}</p>
+              </div>
+            )}
 
             {/* Submit Button */}
             <button
