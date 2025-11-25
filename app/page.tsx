@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -14,9 +15,9 @@ export default function Home() {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    setSubmitted(true);
+    // Navigate to complete signup page with email
+    router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
     setLoading(false);
-    setEmail('');
   };
 
   return (
@@ -55,30 +56,23 @@ export default function Home() {
 
           {/* Waitlist Form */}
           <div className="max-w-md mx-auto">
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                  className="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
-                />
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loading ? 'Joining...' : 'Join Waitlist'}
-                </button>
-              </form>
-            ) : (
-              <div className="text-center p-6 bg-gradient-to-r from-[#73AFEA]/10 via-[#7374EA]/10 to-[#AD73EA]/10 rounded-2xl">
-                <p className="text-xl font-semibold text-gray-800 mb-2">🎉 You&apos;re on the list!</p>
-                <p className="text-gray-600">We&apos;ll notify you when VeoMate launches.</p>
-              </div>
-            )}
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                className="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Joining...' : 'Join Waitlist'}
+              </button>
+            </form>
           </div>
         </div>
       </section>
@@ -239,30 +233,23 @@ export default function Home() {
             Join thousands of teams waiting to experience the future of visual collaboration.
           </p>
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 px-6 py-4 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm focus:border-white focus:bg-white/20 focus:outline-none text-white placeholder-white/60 transition-all"
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-8 py-4 rounded-full bg-white text-[#7374EA] font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Joining...' : 'Join Waitlist'}
-              </button>
-            </form>
-          ) : (
-            <div className="text-center p-6 bg-white/20 backdrop-blur-sm rounded-2xl max-w-md mx-auto">
-              <p className="text-xl font-semibold text-white mb-2">🎉 You&apos;re on the list!</p>
-              <p className="text-white/90">We&apos;ll notify you when VeoMate launches.</p>
-            </div>
-          )}
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="flex-1 px-6 py-4 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm focus:border-white focus:bg-white/20 focus:outline-none text-white placeholder-white/60 transition-all"
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-8 py-4 rounded-full bg-white text-[#7374EA] font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Joining...' : 'Join Waitlist'}
+            </button>
+          </form>
         </div>
       </section>
 
