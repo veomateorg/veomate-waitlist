@@ -26,3 +26,89 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Scroll-triggered animations */
+@keyframes stroke {
+  from {
+    stroke-dashoffset: 5414.29;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+}
+
+@keyframes revealText {
+  from {
+    clip-path: polygon(0 0, 0% 0, 0% 100%, 0 100%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll animation classes */
+.scroll-section-container {
+  container: inline-size;
+  display: grid;
+  position: relative;
+  min-height: 1000px;
+}
+
+.line-svg {
+  grid-row: 1;
+  grid-column: 1;
+  height: calc(100% - 10rem);
+  min-width: 300px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.anim-stroke {
+  stroke-dasharray: 5414.29;
+  stroke-dashoffset: 5414.29;
+  animation: stroke linear forwards;
+  animation-timeline: view();
+  animation-range: 0% 85%;
+}
+
+.scroll-reveal-text {
+  animation: revealText linear both;
+  animation-timeline: view();
+  animation-range: 25% 60%;
+}
+
+.scroll-scale-in {
+  animation: scaleIn linear both;
+  animation-timeline: view();
+  animation-range: 0% 40vh;
+}
+
+.scroll-fade-up {
+  animation: fadeInUp linear both;
+  animation-timeline: view();
+  animation-range: 0% 50%;
+}

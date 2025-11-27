@@ -237,15 +237,33 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="px-6 py-20 bg-[#0a0a0a]">
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-100">
+      <section className="px-6 py-20 bg-[#0a0a0a] scroll-section-container">
+        {/* Animated SVG Line */}
+        <svg
+          className="line-svg"
+          role="presentation"
+          preserveAspectRatio="xMidYMin slice"
+          width="100%"
+          fill="none"
+          viewBox="-480 0 2300 2241"
+        >
+          <path
+            className="anim-stroke"
+            stroke="#D1D5DB"
+            strokeWidth="160"
+            d="M-841 100H584c124 0 225 101 225 225v0c0 124-101 225-225 225h-95a281 281 0 00-281 281v0c0 155 125 281 281 281h442c167 0 304 136 304 304v0c0 168-137 304-304 304H795a439 439 0 00-439 439v82"
+            opacity="0.2"
+          />
+        </svg>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          <h3 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-100 scroll-reveal-text">
             How VeoMate Works
           </h3>
 
           <div className="space-y-12">
             {/* Step 1 */}
-            <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex flex-col md:flex-row gap-8 items-center scroll-fade-up">
               <div className="flex-1">
                 <div className="inline-block px-4 py-2 bg-white text-black rounded-full font-semibold mb-4">
                   Step 1
@@ -256,13 +274,13 @@ export default function Home() {
                   Each space is your project&apos;s home base, combining all your collaboration needs in one place.
                 </p>
               </div>
-              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center scroll-scale-in">
                 <span className="text-6xl">🚀</span>
               </div>
             </div>
 
             {/* Step 2 */}
-            <div className="flex flex-col md:flex-row-reverse gap-8 items-center">
+            <div className="flex flex-col md:flex-row-reverse gap-8 items-center scroll-fade-up">
               <div className="flex-1">
                 <div className="inline-block px-4 py-2 bg-gray-300 text-black rounded-full font-semibold mb-4">
                   Step 2
@@ -274,13 +292,13 @@ export default function Home() {
                   with blocks, but for your entire project.
                 </p>
               </div>
-              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center scroll-scale-in">
                 <span className="text-6xl">🎯</span>
               </div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex flex-col md:flex-row gap-8 items-center scroll-fade-up">
               <div className="flex-1">
                 <div className="inline-block px-4 py-2 bg-gray-400 text-black rounded-full font-semibold mb-4">
                   Step 3
@@ -291,7 +309,7 @@ export default function Home() {
                   changes live. Everything stays in sync, keeping your entire team aligned and productive.
                 </p>
               </div>
-              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-[#1a1a1a] rounded-2xl p-12 text-center scroll-scale-in">
                 <span className="text-6xl">✨</span>
               </div>
             </div>
