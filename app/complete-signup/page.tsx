@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { supabase, isUsingPlaceholderCredentials, saveToLocalStorage } from '@/lib/supabase';
 
 // Force dynamic rendering since we use Supabase
@@ -117,15 +118,25 @@ function CompleteSignupForm() {
     <div className="min-h-screen bg-white">
       {/* Gradient Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#73AFEA] opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-[#7374EA] opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-[#AD73EA] opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-400 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-gray-500 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gray-600 opacity-10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-2xl mx-auto px-6 py-20">
         {/* Logo/Brand */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] bg-clip-text text-transparent">
+          <div className="flex justify-center mb-4">
+            <Image
+              src="/logo.png"
+              alt="VeoMate Logo"
+              width={96}
+              height={96}
+              priority
+              className="w-20 h-20 md:w-24 md:h-24"
+            />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-black">
             VeoMate
           </h1>
           <p className="text-xl text-gray-600">Almost there! Complete your profile</p>
@@ -152,7 +163,7 @@ function CompleteSignupForm() {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-black focus:outline-none text-gray-800 transition-colors"
                   placeholder="John"
                 />
               </div>
@@ -167,7 +178,7 @@ function CompleteSignupForm() {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-black focus:outline-none text-gray-800 transition-colors"
                   placeholder="Doe"
                 />
               </div>
@@ -183,7 +194,7 @@ function CompleteSignupForm() {
                   name="countryCode"
                   value={formData.countryCode}
                   onChange={handleChange}
-                  className="px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+                  className="px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-black focus:outline-none text-gray-800 transition-colors"
                 >
                   <option value="+1">🇺🇸 +1</option>
                   <option value="+44">🇬🇧 +44</option>
@@ -305,7 +316,7 @@ function CompleteSignupForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-8 py-4 rounded-full bg-black text-white font-semibold hover:bg-gray-800 hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Submitting...' : 'Complete Registration'}
             </button>
@@ -321,7 +332,7 @@ export default function CompleteSignup() {
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-[#7374EA] border-r-transparent"></div>
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-black border-r-transparent"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>

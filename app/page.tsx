@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { supabase, isUsingPlaceholderCredentials, saveToLocalStorage } from '@/lib/supabase';
 
 // Force dynamic rendering since we use Supabase
@@ -77,15 +78,25 @@ export default function Home() {
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Gradient Background */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#73AFEA] opacity-20 rounded-full blur-3xl"></div>
-          <div className="absolute top-20 right-1/4 w-96 h-96 bg-[#7374EA] opacity-20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-[#AD73EA] opacity-20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-400 opacity-10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 right-1/4 w-96 h-96 bg-gray-500 opacity-10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gray-600 opacity-10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="max-w-6xl mx-auto">
           {/* Logo/Brand */}
           <div className="text-center mb-16">
-            <h1 className="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] bg-clip-text text-transparent">
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/logo.png"
+                alt="VeoMate Logo"
+                width={120}
+                height={120}
+                priority
+                className="w-24 h-24 md:w-32 md:h-32"
+              />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold mb-4 text-black">
               VeoMate
             </h1>
             <p className="text-xl md:text-2xl text-gray-600">
@@ -115,12 +126,12 @@ export default function Home() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
-                  className="flex-1 px-6 py-4 rounded-full border-2 border-gray-200 focus:border-[#7374EA] focus:outline-none text-gray-800 transition-colors"
+                  className="flex-1 px-6 py-4 rounded-full border-2 border-gray-300 focus:border-black focus:outline-none text-gray-800 transition-colors"
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-8 py-4 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-4 rounded-full bg-black text-white font-semibold hover:bg-gray-800 hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Joining...' : 'Join Waitlist'}
                 </button>
@@ -142,8 +153,8 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#73AFEA] to-[#7374EA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-black mb-4 flex items-center justify-center text-white text-2xl">
                 🎨
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Visual Canvas</h4>
@@ -154,8 +165,8 @@ export default function Home() {
             </div>
 
             {/* Feature 2 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7374EA] to-[#AD73EA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-gray-700 mb-4 flex items-center justify-center text-white text-2xl">
                 💬
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Smart Sidebar Chat</h4>
@@ -166,8 +177,8 @@ export default function Home() {
             </div>
 
             {/* Feature 3 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#AD73EA] to-[#73AFEA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-gray-600 mb-4 flex items-center justify-center text-white text-2xl">
                 ⚡
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Real-Time Collaboration</h4>
@@ -178,8 +189,8 @@ export default function Home() {
             </div>
 
             {/* Feature 4 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#73AFEA] to-[#AD73EA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-gray-800 mb-4 flex items-center justify-center text-white text-2xl">
                 🏢
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Spaces for Teams</h4>
@@ -190,8 +201,8 @@ export default function Home() {
             </div>
 
             {/* Feature 5 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#7374EA] to-[#73AFEA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-gray-500 mb-4 flex items-center justify-center text-white text-2xl">
                 👥
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Role-Based Access</h4>
@@ -202,8 +213,8 @@ export default function Home() {
             </div>
 
             {/* Feature 6 */}
-            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#AD73EA] to-[#7374EA] mb-4 flex items-center justify-center text-white text-2xl">
+            <div className="p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+              <div className="w-12 h-12 rounded-xl bg-black mb-4 flex items-center justify-center text-white text-2xl">
                 🔍
               </div>
               <h4 className="text-xl font-semibold mb-3 text-gray-800">Dynamic Zoom & Focus</h4>
@@ -227,7 +238,7 @@ export default function Home() {
             {/* Step 1 */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1">
-                <div className="inline-block px-4 py-2 bg-gradient-to-r from-[#73AFEA] to-[#7374EA] text-white rounded-full font-semibold mb-4">
+                <div className="inline-block px-4 py-2 bg-black text-white rounded-full font-semibold mb-4">
                   Step 1
                 </div>
                 <h4 className="text-2xl font-semibold mb-4 text-gray-800">Create or Join a Space</h4>
@@ -236,7 +247,7 @@ export default function Home() {
                   Each space is your project&apos;s home base, combining all your collaboration needs in one place.
                 </p>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#73AFEA]/10 to-[#7374EA]/10 rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-gray-100 rounded-2xl p-12 text-center">
                 <span className="text-6xl">🚀</span>
               </div>
             </div>
@@ -244,7 +255,7 @@ export default function Home() {
             {/* Step 2 */}
             <div className="flex flex-col md:flex-row-reverse gap-8 items-center">
               <div className="flex-1">
-                <div className="inline-block px-4 py-2 bg-gradient-to-r from-[#7374EA] to-[#AD73EA] text-white rounded-full font-semibold mb-4">
+                <div className="inline-block px-4 py-2 bg-gray-700 text-white rounded-full font-semibold mb-4">
                   Step 2
                 </div>
                 <h4 className="text-2xl font-semibold mb-4 text-gray-800">Build Your Canvas</h4>
@@ -254,7 +265,7 @@ export default function Home() {
                   with blocks, but for your entire project.
                 </p>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#7374EA]/10 to-[#AD73EA]/10 rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-gray-100 rounded-2xl p-12 text-center">
                 <span className="text-6xl">🎯</span>
               </div>
             </div>
@@ -262,7 +273,7 @@ export default function Home() {
             {/* Step 3 */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1">
-                <div className="inline-block px-4 py-2 bg-gradient-to-r from-[#AD73EA] to-[#73AFEA] text-white rounded-full font-semibold mb-4">
+                <div className="inline-block px-4 py-2 bg-gray-600 text-white rounded-full font-semibold mb-4">
                   Step 3
                 </div>
                 <h4 className="text-2xl font-semibold mb-4 text-gray-800">Collaborate in Real-Time</h4>
@@ -271,7 +282,7 @@ export default function Home() {
                   changes live. Everything stays in sync, keeping your entire team aligned and productive.
                 </p>
               </div>
-              <div className="flex-1 bg-gradient-to-br from-[#AD73EA]/10 to-[#73AFEA]/10 rounded-2xl p-12 text-center">
+              <div className="flex-1 bg-gray-100 rounded-2xl p-12 text-center">
                 <span className="text-6xl">✨</span>
               </div>
             </div>
@@ -280,12 +291,12 @@ export default function Home() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="px-6 py-20 bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA]">
+      <section className="px-6 py-20 bg-black">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Transform Your Workflow?
           </h3>
-          <p className="text-xl text-white/90 mb-8">
+          <p className="text-xl text-gray-300 mb-8">
             Join thousands of teams waiting to experience the future of visual collaboration.
           </p>
 
@@ -297,12 +308,12 @@ export default function Home() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-1 px-6 py-4 rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm focus:border-white focus:bg-white/20 focus:outline-none text-white placeholder-white/60 transition-all"
+                className="flex-1 px-6 py-4 rounded-full border-2 border-gray-700 bg-gray-800 focus:border-gray-500 focus:outline-none text-white placeholder-gray-400 transition-all"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="px-8 py-4 rounded-full bg-white text-[#7374EA] font-semibold hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 hover:shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Joining...' : 'Join Waitlist'}
               </button>

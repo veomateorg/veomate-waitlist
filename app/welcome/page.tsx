@@ -1,20 +1,31 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Welcome() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       {/* Gradient Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#73AFEA] opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute top-20 right-1/4 w-96 h-96 bg-[#7374EA] opacity-20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-[#AD73EA] opacity-20 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-gray-400 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-1/4 w-96 h-96 bg-gray-500 opacity-10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-gray-600 opacity-10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-2xl mx-auto px-6 text-center">
         {/* Logo/Brand */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] bg-clip-text text-transparent">
+        <div className="flex justify-center mb-4">
+          <Image
+            src="/logo.png"
+            alt="VeoMate Logo"
+            width={96}
+            height={96}
+            priority
+            className="w-20 h-20 md:w-24 md:h-24"
+          />
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-black">
           VeoMate
         </h1>
 
@@ -40,7 +51,7 @@ export default function Welcome() {
           </p>
           <Link
             href="/"
-            className="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-[#73AFEA] via-[#7374EA] to-[#AD73EA] text-white font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
+            className="inline-block px-8 py-3 rounded-full bg-black text-white font-semibold hover:bg-gray-800 hover:shadow-lg transform hover:scale-105 transition-all"
           >
             Back to Home
           </Link>
