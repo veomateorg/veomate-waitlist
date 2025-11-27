@@ -18,9 +18,24 @@ export default function Home() {
   useEffect(() => {
     // Ensure video plays on mount
     if (videoRef.current) {
-      videoRef.current.play().catch((error) => {
-        console.log('Video autoplay failed:', error);
+      const video = videoRef.current;
+      console.log('Video element found:', video);
+      console.log('Video src:', video.src);
+      console.log('Video readyState:', video.readyState);
+
+      video.play().catch((error) => {
+        console.error('Video autoplay failed:', error);
       });
+
+      video.addEventListener('loadeddata', () => {
+        console.log('Video loaded successfully');
+      });
+
+      video.addEventListener('error', (e) => {
+        console.error('Video error:', e);
+      });
+    } else {
+      console.error('Video ref is null');
     }
   }, []);
 
@@ -87,7 +102,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
+        <div className="absolute inset-0 overflow-hidden bg-[#0a0a0a]" style={{ zIndex: 0 }}>
           <video
             ref={videoRef}
             autoPlay
@@ -95,18 +110,18 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60"
-            style={{ pointerEvents: 'none' }}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ pointerEvents: 'none', opacity: 0.5 }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />
             <source src="/hero-video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/20 to-[#0a0a0a]/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Logo/Brand */}
           <div className="text-center mb-16">
             <div className="flex justify-center mb-6">
