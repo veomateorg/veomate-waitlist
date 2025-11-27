@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { supabase, isUsingPlaceholderCredentials, saveToLocalStorage } from '@/lib/supabase';
@@ -10,9 +10,19 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   const router = useRouter();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    // Ensure video plays on mount
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,19 +87,23 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-30"
+            preload="auto"
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-40"
+            style={{ pointerEvents: 'none' }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />
             <source src="/hero-video.webm" type="video/webm" />
+            Your browser does not support the video tag.
           </video>
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/60 to-[#0a0a0a]/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/50 to-[#0a0a0a]/70"></div>
         </div>
 
         <div className="max-w-6xl mx-auto">
