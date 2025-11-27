@@ -87,7 +87,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-transparent">
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
           <video
             ref={videoRef}
             autoPlay
@@ -95,7 +95,7 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-40"
+            className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-60"
             style={{ pointerEvents: 'none' }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />
@@ -103,7 +103,7 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/50 to-[#0a0a0a]/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/40 via-[#0a0a0a]/20 to-[#0a0a0a]/40"></div>
         </div>
 
         <div className="max-w-6xl mx-auto">
