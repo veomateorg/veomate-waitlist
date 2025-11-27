@@ -87,7 +87,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 -z-10 overflow-hidden bg-[#0a0a0a]">
+        <div className="absolute inset-0 -z-10 overflow-hidden bg-transparent">
           <video
             ref={videoRef}
             autoPlay
