@@ -126,7 +126,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <div className="flex justify-center mb-6">
               <Image
-                src="/logo.png"
+                src="/logo-dark.png"
                 alt="VeoMate Logo"
                 width={120}
                 height={120}
