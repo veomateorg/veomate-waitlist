@@ -17,7 +17,7 @@ export default function Welcome() {
         {/* Logo/Brand */}
         <div className="flex justify-center mb-4">
           <Image
-            src="/logo.png"
+            src="/logo-dark.png"
             alt="VeoMate Logo"
             width={96}
             height={96}
