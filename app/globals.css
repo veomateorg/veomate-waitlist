@@ -112,3 +112,16 @@ body {
   animation-timeline: view();
   animation-range: 0% 50%;
 }
+
+@keyframes video-blur {
+  0%, 100% {
+    filter: blur(12px);
+  }
+  50% {
+    filter: blur(0px);
+  }
+}
+
+.animate-video-blur {
+  animation: video-blur 8s ease-in-out infinite;
+}

@@ -102,7 +102,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-32 overflow-hidden">
         {/* Video Background */}
-        <div className="absolute inset-0 overflow-hidden bg-[#0a0a0a]" style={{ zIndex: 0 }}>
+        <div className="absolute inset-0 z-0">
           <video
             ref={videoRef}
             autoPlay
@@ -117,6 +117,8 @@ export default function Home() {
             <source src="/hero-video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
+          {/* Blur Overlay */}
+          <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
         </div>
