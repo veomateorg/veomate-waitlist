@@ -122,7 +122,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm::py-0 overflow-hidden">
+      <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm:py-0 overflow-hidden">
         {/* Docs Button */}
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
           <div className="relative p-[1px] rounded-2xl overflow-hidden group">
@@ -130,9 +130,9 @@ export default function Home() {
             <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#0000_50%,#ffffff_100%)] opacity-70" />
             
             <button
-              onClick={() => router.push('/user')}
+              onClick={() => router.push('/docs')}
               suppressHydrationWarning
-              className="relative flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-[#0a0a0a] cursor-pointer border border-white/20 transition-all duration-300"
+              className="relative flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 xl:px-6 xl:py-3 rounded-2xl bg-black/60 backdrop-blur-xl cursor-pointer border border-white/20 transition-all duration-300"
             >
               <span className="text-gray-200 font-medium text-sm sm:text-base">Docs</span>
               <svg 
@@ -149,12 +149,11 @@ export default function Home() {
 
         <div className="w-full max-w-3xl px-4 relative z-10">
           {/* Waitlist Card */}
-          <div className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 sm:p-8 xl:p-12 shadow-2xl shadow-black/50 hover:border-white/20 transition-all duration-300 group w-full">
+          <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 sm:p-10 xl:p-12 hover:border-white/20 transition-all duration-300 group w-full">
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-8 xl:gap-12">
               {/* Left Side: Logo & Brand */}
               <div className="flex flex-row sm:flex-col items-center sm:items-start text-left gap-5 sm:gap-0 sm:space-y-6 w-full sm:w-auto justify-start sm:justify-start">
                 <div className="relative shrink-0">
-                  <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-700"></div>
                   <div className="relative bg-[#121212] p-3 sm:p-3.5 rounded-2xl border border-white/10 shadow-inner">
                     <Image
                       src="/logo-dark.png"
