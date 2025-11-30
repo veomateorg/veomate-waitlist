@@ -125,21 +125,26 @@ export default function Home() {
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm::py-0 overflow-hidden">
         {/* Docs Button */}
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
-          <button
-            onClick={() => router.push('/user')}
-            suppressHydrationWarning
-            className="group flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-          >
-            <span className="text-gray-200 font-medium text-sm sm:text-base group-hover:text-white">Docs</span>
-            <svg 
-              className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 group-hover:text-white transition-colors" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
+          <div className="relative p-[1px] rounded-2xl overflow-hidden group">
+            {/* Spinning Gradient Border */}
+            <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#0000_50%,#ffffff_100%)] opacity-70" />
+            
+            <button
+              onClick={() => router.push('/user')}
+              suppressHydrationWarning
+              className="relative flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-2xl bg-[#0a0a0a] cursor-pointer border border-white/20 transition-all duration-300"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </button>
+              <span className="text-gray-200 font-medium text-sm sm:text-base">Docs</span>
+              <svg 
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 transition-colors" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="w-full max-w-3xl px-4 relative z-10">
