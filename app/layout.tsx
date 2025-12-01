@@ -18,9 +18,54 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: 'VeoMate - Join the Waitlist',
+  title: {
+    default: 'VeoMate Waitlist',
+    template: '%s | VeoMate',
+  },
   description:
-    'Join the VeoMate waitlist and be the first to experience the future of visual collaboration. Where Discord meets Excalidraw meets Notion.',
+    'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+  keywords: [
+    'productivity',
+    'canvas',
+    'collaboration',
+    'project management',
+    'whiteboard',
+    'context-aware',
+    'workflow',
+    'remote work',
+    'team collaboration',
+    'visual planning',
+  ],
+  authors: [{ name: 'VeoMate Team' }],
+  creator: 'VeoMate',
+  publisher: 'VeoMate',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://veomate.com',
+    title: 'VeoMate - The Context-Aware Canvas Platform',
+    description:
+      'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+    siteName: 'VeoMate',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VeoMate - The Context-Aware Canvas Platform',
+    description:
+      'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+    creator: '@veomate',
+  },
 };
 
 export default function RootLayout({
