@@ -22,7 +22,7 @@ export default function UserDocs() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-gray-300 font-sans selection:bg-white/20">
+    <div className="min-h-screen bg-veo-docs-bg text-gray-300 font-sans selection:bg-white/20">
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link
@@ -112,8 +112,8 @@ export default function UserDocs() {
               Demo Interface Preview
             </h2>
 
-            <div className="w-full aspect-video rounded-xl border border-white/10 bg-[#0a0a0a] overflow-hidden flex shadow-2xl relative select-none group">
-              <div className="w-1/3 sm:w-1/4 h-full border-r border-white/10 bg-[#0f0f0f] flex flex-col transition-colors duration-500 z-20 relative">
+            <div className="w-full aspect-video rounded-xl border border-white/10 bg-veo-bg-dark overflow-hidden flex shadow-2xl relative select-none group">
+              <div className="w-1/3 sm:w-1/4 h-full border-r border-white/10 bg-veo-sidebar-bg flex flex-col transition-colors duration-500 z-20 relative">
                 <div className="p-3 sm:p-4 border-b border-white/5">
                   <div className="h-3 sm:h-4 w-16 sm:w-24 bg-white/10 rounded"></div>
                 </div>
@@ -144,8 +144,8 @@ export default function UserDocs() {
                 </div>
               </div>
 
-              <div className="flex-1 relative bg-[#050505] overflow-hidden">
-                <div className="absolute top-3 sm:top-4 left-4 sm:left-6 right-4 sm:right-6 h-8 sm:h-10 rounded-lg border border-white/10 bg-[#0a0a0a] flex items-center px-3 sm:px-4 justify-between z-20">
+              <div className="flex-1 relative bg-veo-docs-bg overflow-hidden">
+                <div className="absolute top-3 sm:top-4 left-4 sm:left-6 right-4 sm:right-6 h-8 sm:h-10 rounded-lg border border-white/10 bg-veo-bg-dark flex items-center px-3 sm:px-4 justify-between z-20">
                   <div className="h-2 sm:h-3 w-20 sm:w-32 bg-white/10 rounded"></div>
                   <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full border border-white/20"></div>
                 </div>
@@ -165,7 +165,7 @@ export default function UserDocs() {
                       ${
                         demoStep === 0
                           ? 'border-red-500 bg-red-500/10 shadow-[0_0_30px_-5px_rgba(239,68,68,0.3)] scale-105'
-                          : 'border-white/10 bg-[#111] opacity-40 scale-100'
+                          : 'border-white/10 bg-veo-card-darker opacity-40 scale-100'
                       }`}
                   >
                     <div
@@ -181,7 +181,7 @@ export default function UserDocs() {
                       ${
                         demoStep === 1
                           ? 'border-green-500 bg-green-500/10 shadow-[0_0_30px_-5px_rgba(34,197,94,0.3)] scale-105'
-                          : 'border-white/10 bg-[#111] opacity-40 scale-100'
+                          : 'border-white/10 bg-veo-card-darker opacity-40 scale-100'
                       }`}
                   >
                     <div
@@ -250,7 +250,7 @@ export default function UserDocs() {
                   <p className="text-gray-400 leading-relaxed mb-4">
                     The canvas is a visual area where you build your work using{' '}
                     <strong>nodes</strong> (blocks). Each node represents a part
-                    of your project (e.g., "Auth Page", "Landing Page").
+                    of your project (e.g., &quot;Auth Page&quot;, &quot;Landing Page&quot;).
                   </p>
                   <ul className="list-disc list-inside text-gray-400 space-y-2 bg-white/5 p-4 rounded-xl border border-white/5">
                     <li>
@@ -259,8 +259,8 @@ export default function UserDocs() {
                     </li>
                     <li>
                       <strong className="text-white">Sub-nodes:</strong> Smaller
-                      parts inside a node (e.g., "Navbar" inside "Landing
-                      Page").
+                      parts inside a node (e.g., &quot;Navbar&quot; inside &quot;Landing
+                      Page&quot;).
                     </li>
                     <li>
                       <strong className="text-white">Branches:</strong>{' '}
@@ -291,7 +291,7 @@ export default function UserDocs() {
           <section id="faq" className="mb-16 scroll-mt-28">
             <h2 className="text-3xl font-bold text-white mb-6">Q&A</h2>
             <div className="grid gap-6">
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What exactly is this platform?
                 </h4>
@@ -303,18 +303,18 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
-                  What are "nodes" and "sub-nodes"?
+                  What are &quot;nodes&quot; and &quot;sub-nodes&quot;?
                 </h4>
                 <p className="text-gray-400">
-                  Nodes are project parts (e.g., "Auth Page"). Inside a node,
-                  you can create sub-nodes (e.g., "Navbar"). You can assign
+                  Nodes are project parts (e.g., &quot;Auth Page&quot;). Inside a node,
+                  you can create sub-nodes (e.g., &quot;Navbar&quot;). You can assign
                   people to manage each node or sub-node.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Who can edit what?
                 </h4>
@@ -332,18 +332,18 @@ export default function UserDocs() {
                 </ul>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
-                  What happens when a user "triggers" a part?
+                  What happens when a user &quot;triggers&quot; a part?
                 </h4>
                 <p className="text-gray-400">
                   When someone opens a task, their canvas zooms into that area
-                  and the sidebar switches to that task's chat automatically.
-                  This zoom is personal and doesn't affect others.
+                  and the sidebar switches to that task&apos;s chat automatically.
+                  This zoom is personal and doesn&apos;t affect others.
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   How is this different from Discord, Figma, or Jira?
                 </h4>
@@ -354,12 +354,12 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
+              <div className="p-6 rounded-2xl bg-veo-card-darker border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Can this platform be used by developers only?
                 </h4>
                 <p className="text-gray-400">
-                  No! It's for any team-developers, designers, product managers,
+                  No! It&apos;s for any team-developers, designers, product managers,
                   content teams, or even individuals. Anyone can visualize their
                   work, assign parts, and communicate clearly.
                 </p>

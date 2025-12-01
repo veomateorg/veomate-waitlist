@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
 import {
-  supabase,
   isUsingPlaceholderCredentials,
   saveToLocalStorage,
 } from '@/lib/supabase';
@@ -29,7 +28,7 @@ export default function Home() {
     } else if (state === 'profile_completed') {
       router.replace('/welcome');
     } else {
-      setIsCheckingState(false);
+      setTimeout(() => setIsCheckingState(false), 0);
     }
 
     if (videoRef.current) {
@@ -50,6 +49,8 @@ export default function Home() {
     setLoading(true);
     setError('');
 
+
+
     try {
       if (isUsingPlaceholderCredentials()) {
         const result = saveToLocalStorage({
@@ -63,6 +64,14 @@ export default function Home() {
           setLoading(false);
           return;
         }
+        
+        const demoCount = parseInt(localStorage.getItem('veomate_submission_count') || '0', 10);
+        if (demoCount >= 5) {
+             setError('You have reached the maximum limit of 5 email submissions.');
+             setLoading(false);
+             return;
+        }
+        localStorage.setItem('veomate_submission_count', (demoCount + 1).toString());
 
         localStorage.setItem('veomate_signup_state', 'email_entered');
         localStorage.setItem('veomate_current_email', email);
@@ -70,31 +79,28 @@ export default function Home() {
         return;
       }
 
-      const { error: dbError } = await supabase
-        .from('waitlist')
-        .upsert(
-          {
-            email,
-            completed_signup: false,
-            updated_at: new Date().toISOString(),
-          },
-          {
-            onConflict: 'email',
-            ignoreDuplicates: false,
-          }
-        )
-        .select();
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-      if (dbError) {
-        setError('Failed to save email. Please try again.');
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to save email. Please try again.');
         setLoading(false);
         return;
       }
 
       localStorage.setItem('veomate_signup_state', 'email_entered');
       localStorage.setItem('veomate_current_email', email);
+
+      
       router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -105,7 +111,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] relative">
+    <div className="min-h-screen bg-veo-bg-dark relative">
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -132,7 +138,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-8 xl:gap-12">
               <div className="flex flex-row sm:flex-col items-center sm:items-start text-left gap-5 sm:gap-0 sm:space-y-6 w-full sm:w-auto justify-start sm:justify-start">
                 <div className="relative shrink-0">
-                  <div className="relative bg-[#121212] p-3 sm:p-3.5 rounded-2xl border border-white/10 shadow-inner">
+                  <div className="relative bg-veo-card-bg p-3 sm:p-3.5 rounded-2xl border border-white/10 shadow-inner">
                     <Image
                       src="/logo-dark.png"
                       alt="VeoMate Logo"

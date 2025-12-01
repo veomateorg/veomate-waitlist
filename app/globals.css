@@ -18,6 +18,10 @@
   --color-veo-dark-gray: #374151;
   --color-veo-bg-dark: #0a0a0a;
   --color-veo-card-dark: #1a1a1a;
+  --color-veo-card-bg: #121212;
+  --color-veo-docs-bg: #050505;
+  --color-veo-sidebar-bg: #0f0f0f;
+  --color-veo-card-darker: #111111;
 }
 
 body {

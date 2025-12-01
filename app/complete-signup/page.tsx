@@ -78,12 +78,12 @@ function CompleteSignupForm() {
     const savedEmail = localStorage.getItem('veomate_current_email');
 
     if (emailParam) {
-      setEmail(emailParam);
+      setTimeout(() => setEmail(emailParam), 0);
       if (emailParam !== savedEmail) {
         localStorage.setItem('veomate_current_email', emailParam);
       }
     } else if (savedEmail) {
-      setEmail(savedEmail);
+      setTimeout(() => setEmail(savedEmail), 0);
     } else {
       router.push('/');
     }
@@ -96,7 +96,7 @@ function CompleteSignupForm() {
     } else if (state === 'profile_completed') {
       router.replace('/welcome');
     } else {
-      setIsCheckingState(false);
+      setTimeout(() => setIsCheckingState(false), 0);
     }
 
     if (videoRef.current) {
@@ -197,7 +197,7 @@ function CompleteSignupForm() {
 
       localStorage.setItem('veomate_signup_state', 'profile_completed');
       router.push('/welcome');
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -208,7 +208,7 @@ function CompleteSignupForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] relative flex items-center justify-center p-2 sm:p-4 overflow-hidden">
+    <div className="min-h-screen bg-veo-bg-dark relative flex items-center justify-center p-2 sm:p-4 overflow-hidden">
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -233,7 +233,7 @@ function CompleteSignupForm() {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3 p-4 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
             <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0">
-              <div className="bg-[#121212] p-2 rounded-lg sm:rounded-xl border border-white/10 shadow-inner w-fit md:mb-6 shrink-0">
+              <div className="bg-veo-card-bg p-2 rounded-lg sm:rounded-xl border border-white/10 shadow-inner w-fit md:mb-6 shrink-0">
                 <Image
                   src="/logo-dark.png"
                   alt="VeoMate Logo"
@@ -377,7 +377,7 @@ function CompleteSignupForm() {
                     </button>
 
                     {showCountryDropdown && (
-                      <div className="absolute top-full left-0 mt-1 w-32 max-h-48 overflow-y-auto z-20 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl no-scrollbar">
+                      <div className="absolute top-full left-0 mt-1 w-32 max-h-48 overflow-y-auto z-20 bg-veo-card-dark border border-white/10 rounded-lg shadow-xl no-scrollbar">
                         {countryOptions.map((option) => (
                           <button
                             key={option.value}
@@ -493,7 +493,7 @@ function CompleteSignupForm() {
                     </button>
 
                     {showTeamSizeDropdown && (
-                      <div className="absolute bottom-full left-0 mb-1 w-full max-h-48 overflow-y-auto z-20 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl no-scrollbar">
+                      <div className="absolute bottom-full left-0 mb-1 w-full max-h-48 overflow-y-auto z-20 bg-veo-card-dark border border-white/10 rounded-lg shadow-xl no-scrollbar">
                         {teamSizeOptions.map((option) => (
                           <button
                             key={option.value}
@@ -557,7 +557,7 @@ function CompleteSignupForm() {
                     </button>
 
                     {showSourceDropdown && (
-                      <div className="absolute bottom-full left-0 mb-1 w-full max-h-48 overflow-y-auto z-20 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl no-scrollbar">
+                      <div className="absolute bottom-full left-0 mb-1 w-full max-h-48 overflow-y-auto z-20 bg-veo-card-dark border border-white/10 rounded-lg shadow-xl no-scrollbar">
                         {sourceOptions.map((option) => (
                           <button
                             key={option.value}
@@ -652,7 +652,7 @@ export default function CompleteSignup() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="min-h-screen bg-veo-bg-dark flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-white border-r-transparent"></div>
           </div>

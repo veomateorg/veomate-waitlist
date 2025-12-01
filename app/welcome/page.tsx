@@ -23,7 +23,7 @@ export default function Welcome() {
         router.replace('/complete-signup');
       }
     } else {
-      setIsCheckingState(false);
+      setTimeout(() => setIsCheckingState(false), 0);
     }
 
     if (videoRef.current) {
@@ -42,7 +42,7 @@ export default function Welcome() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] relative flex items-center justify-center p-4 overflow-hidden">
+    <div className="min-h-screen bg-veo-bg-dark relative flex items-center justify-center p-4 overflow-hidden">
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -85,10 +85,10 @@ export default function Welcome() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 tracking-tight">
-            You&apos;re In.
+            You&apos;re In
           </h1>
           <p className="text-gray-400 text-xs sm:text-sm mb-8 font-medium">
-            Your spot is secured.
+            Your spot is secured
           </p>
 
           <div className="mb-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/0 border border-white/10">
@@ -102,11 +102,12 @@ export default function Welcome() {
             <button
               onClick={() => {
                 localStorage.removeItem('veomate_signup_state');
+                localStorage.removeItem('veomate_current_email');
                 router.push('/');
               }}
               className="group relative w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-white text-black font-bold text-xs sm:text-sm hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]"
             >
-              Back to Home
+              Add another email
               <svg
                 className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300"
                 fill="none"
