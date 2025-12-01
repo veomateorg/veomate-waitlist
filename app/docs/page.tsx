@@ -5,8 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function UserDocs() {
   const [activeSection, setActiveSection] = useState('intro');
-  // Demo animation state
-  const [demoStep, setDemoStep] = useState(0); // 0: Auth Page, 1: Dashboard
+  const [demoStep, setDemoStep] = useState(0);
 
   const sections = [
     { id: 'intro', title: 'Introduction' },
@@ -24,7 +23,6 @@ export default function UserDocs() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-gray-300 font-sans selection:bg-white/20">
-      {/* Navigation Bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link
@@ -45,7 +43,6 @@ export default function UserDocs() {
       </nav>
 
       <div className="pt-24 pb-20 max-w-7xl mx-auto px-6 flex gap-12">
-        {/* Sidebar Navigation */}
         <aside className="hidden lg:block w-64 flex-shrink-0 fixed h-[calc(100vh-6rem)] overflow-y-auto">
           <div className="space-y-1">
             {sections.map((section) => (
@@ -69,9 +66,7 @@ export default function UserDocs() {
           </div>
         </aside>
 
-        {/* Main Content */}
         <main className="flex-1 lg:pl-72 max-w-4xl">
-          {/* Introduction */}
           <section id="intro" className="mb-16 scroll-mt-28">
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Welcome to VeoMate
@@ -112,21 +107,17 @@ export default function UserDocs() {
             </div>
           </section>
 
-          {/* Demo Interface Preview */}
           <section id="preview" className="mb-16 scroll-mt-28">
             <h2 className="text-3xl font-bold text-white mb-6">
               Demo Interface Preview
             </h2>
 
-            {/* Mockup Container */}
             <div className="w-full aspect-video rounded-xl border border-white/10 bg-[#0a0a0a] overflow-hidden flex shadow-2xl relative select-none group">
-              {/* Sidebar */}
               <div className="w-1/3 sm:w-1/4 h-full border-r border-white/10 bg-[#0f0f0f] flex flex-col transition-colors duration-500 z-20 relative">
                 <div className="p-3 sm:p-4 border-b border-white/5">
                   <div className="h-3 sm:h-4 w-16 sm:w-24 bg-white/10 rounded"></div>
                 </div>
                 <div className="flex-1 p-3 sm:p-4 space-y-3">
-                  {/* Sidebar Item 1 (Linked to Node 1) */}
                   <div
                     className={`h-6 sm:h-8 w-full rounded flex items-center px-2 sm:px-3 transition-all duration-500 ${demoStep === 0 ? 'bg-red-500/10 border border-red-500/20' : 'bg-transparent border border-transparent'}`}
                   >
@@ -138,7 +129,6 @@ export default function UserDocs() {
                     ></div>
                   </div>
 
-                  {/* Sidebar Item 2 (Linked to Node 2) */}
                   <div
                     className={`h-6 sm:h-8 w-full rounded flex items-center px-2 sm:px-3 transition-all duration-500 ${demoStep === 1 ? 'bg-green-500/10 border border-green-500/20' : 'bg-transparent border border-transparent'}`}
                   >
@@ -154,15 +144,12 @@ export default function UserDocs() {
                 </div>
               </div>
 
-              {/* Canvas Area */}
               <div className="flex-1 relative bg-[#050505] overflow-hidden">
-                {/* Top Bar */}
                 <div className="absolute top-3 sm:top-4 left-4 sm:left-6 right-4 sm:right-6 h-8 sm:h-10 rounded-lg border border-white/10 bg-[#0a0a0a] flex items-center px-3 sm:px-4 justify-between z-20">
                   <div className="h-2 sm:h-3 w-20 sm:w-32 bg-white/10 rounded"></div>
                   <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full border border-white/20"></div>
                 </div>
 
-                {/* Camera / Zoom Container */}
                 <div
                   className="absolute inset-0 transition-transform duration-1000 ease-in-out will-change-transform"
                   style={{
@@ -172,7 +159,6 @@ export default function UserDocs() {
                         : 'scale(1.1) translate(-10%, -5%)',
                   }}
                 >
-                  {/* Node 1 (Auth Page) */}
                   <div
                     className={`absolute w-32 h-20 sm:w-48 sm:h-28 rounded-xl sm:rounded-2xl border backdrop-blur-sm flex items-center justify-center z-10 transition-all duration-700 
                       top-16 left-8 sm:top-24 sm:left-20
@@ -189,7 +175,6 @@ export default function UserDocs() {
                     </div>
                   </div>
 
-                  {/* Node 2 (Dashboard) */}
                   <div
                     className={`absolute w-32 h-20 sm:w-48 sm:h-28 rounded-xl sm:rounded-2xl border backdrop-blur-sm flex items-center justify-center z-10 transition-all duration-700 
                       top-36 left-40 sm:top-48 sm:left-80
@@ -207,7 +192,6 @@ export default function UserDocs() {
                   </div>
                 </div>
 
-                {/* Simulated Cursor */}
                 <div
                   className="absolute z-5 pointer-events-none transition-all duration-[1000ms] ease-in-out"
                   style={{
@@ -235,7 +219,6 @@ export default function UserDocs() {
             </div>
           </section>
 
-          {/* Core Concepts */}
           <section id="concepts" className="mb-16 scroll-mt-28">
             <h2 className="text-3xl font-bold text-white mb-6">
               Core Concepts
@@ -305,11 +288,9 @@ export default function UserDocs() {
             </div>
           </section>
 
-          {/* FAQ */}
           <section id="faq" className="mb-16 scroll-mt-28">
             <h2 className="text-3xl font-bold text-white mb-6">Q&A</h2>
             <div className="grid gap-6">
-              {/* Q1 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What exactly is this platform?
@@ -322,7 +303,6 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              {/* Q2 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What are "nodes" and "sub-nodes"?
@@ -334,7 +314,6 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              {/* Q4 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Who can edit what?
@@ -353,7 +332,6 @@ export default function UserDocs() {
                 </ul>
               </div>
 
-              {/* Q7 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What happens when a user "triggers" a part?
@@ -365,7 +343,6 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              {/* Q11 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   How is this different from Discord, Figma, or Jira?
@@ -377,7 +354,6 @@ export default function UserDocs() {
                 </p>
               </div>
 
-              {/* Q12 */}
               <div className="p-6 rounded-2xl bg-[#111] border border-white/5 hover:border-white/10 transition-all">
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Can this platform be used by developers only?

@@ -11,7 +11,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* VeoMate Brand Colors - Based on Logo */
   --color-veo-black: #000000;
   --color-veo-white: #ffffff;
   --color-veo-gray: #9ca3af;
@@ -27,7 +26,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Scroll-triggered animations */
 @keyframes stroke {
   from {
     stroke-dashoffset: 5414.29;
@@ -68,7 +66,6 @@ body {
   }
 }
 
-/* Scroll animation classes */
 .scroll-section-container {
   container: inline-size;
   display: grid;

@@ -10,7 +10,6 @@ import {
   saveToLocalStorage,
 } from '@/lib/supabase';
 
-// Force dynamic rendering since we use Supabase
 export const dynamic = 'force-dynamic';
 
 export default function Home() {
@@ -21,18 +20,15 @@ export default function Home() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Ensure video plays on mount
     if (videoRef.current) {
       const video = videoRef.current;
 
-      // Explicitly set muted to true for autoplay to work reliably
       video.defaultMuted = true;
       video.muted = true;
 
       video.play().catch((error) => {
-        // Ignore AbortError which happens when video is paused to save power
         if (error.name !== 'AbortError') {
-          console.error('Video autoplay failed:', error);
+          // Silent failure
         }
       });
     }
@@ -44,9 +40,7 @@ export default function Home() {
     setError('');
 
     try {
-      // Check if we're using placeholder credentials
       if (isUsingPlaceholderCredentials()) {
-        // Use localStorage fallback for demo mode
         const result = saveToLocalStorage({
           email,
           completed_signup: false,
@@ -59,12 +53,10 @@ export default function Home() {
           return;
         }
 
-        // Navigate to complete signup page with email
         router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
         return;
       }
 
-      // Use Supabase for real database
       const { error: dbError } = await supabase
         .from('waitlist')
         .upsert(
@@ -81,16 +73,13 @@ export default function Home() {
         .select();
 
       if (dbError) {
-        console.error('Database error:', dbError);
         setError('Failed to save email. Please try again.');
         setLoading(false);
         return;
       }
 
-      // Navigate to complete signup page with email
       router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
     } catch (err) {
-      console.error('Error:', err);
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -98,7 +87,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative">
-      {/* Global Video Background */}
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -114,22 +102,16 @@ export default function Home() {
           <source src="/hero-video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-        {/* Blur Overlay */}
         <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
       </div>
 
-      {/* Hero Section */}
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm:py-0 overflow-hidden">
-        {/* Docs Button */}
         <DocsButton />
 
         <div className="w-full max-w-3xl px-4 relative z-10">
-          {/* Waitlist Card */}
           <div className="bg-black/60 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 sm:p-10 xl:p-12 hover:border-white/20 transition-all duration-300 group w-full">
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-8 xl:gap-12">
-              {/* Left Side: Logo & Brand */}
               <div className="flex flex-row sm:flex-col items-center sm:items-start text-left gap-5 sm:gap-0 sm:space-y-6 w-full sm:w-auto justify-start sm:justify-start">
                 <div className="relative shrink-0">
                   <div className="relative bg-[#121212] p-3 sm:p-3.5 rounded-2xl border border-white/10 shadow-inner">
@@ -152,13 +134,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Divider (Desktop) */}
               <div className="hidden sm:block w-px h-52 bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
 
-              {/* Divider (Mobile) */}
               <div className="sm:hidden w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-2"></div>
 
-              {/* Right Side: Form */}
               <div className="flex-1 w-full">
                 <div className="mb-3 sm:mb-4 xl:mb-6 text-left">
                   <h3 className="text-md sm:text-xl font-semibold text-white sm:mb-1">

@@ -15,7 +15,7 @@ export default function Welcome() {
       video.muted = true;
       video.play().catch((error) => {
         if (error.name !== 'AbortError') {
-          console.error('Video autoplay failed:', error);
+          // Silent failure
         }
       });
     }
@@ -23,7 +23,6 @@ export default function Welcome() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative flex items-center justify-center p-4 overflow-hidden">
-      {/* Global Video Background */}
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -46,12 +45,9 @@ export default function Welcome() {
       <DocsButton />
 
       <div className="relative z-10 w-full max-w-sm">
-        {/* Card */}
         <div className="group relative bg-black/20 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-8 sm:p-10 text-center shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-700">
-          {/* Top Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-white/40 blur-[20px] rounded-full group-hover:bg-white/60 transition-all duration-700"></div>
 
-          {/* Icon - Minimal White */}
           <div className="mb-6 relative inline-flex items-center justify-center">
             <div className="absolute inset-0 bg-white/5 blur-xl rounded-full"></div>
             <div className="relative bg-white/5 p-3.5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] rotate-3 group-hover:rotate-0 transition-transform duration-500">
@@ -78,7 +74,6 @@ export default function Welcome() {
             Your spot is secured.
           </p>
 
-          {/* Pro Badge - Monochrome/Silver */}
           <div className="mb-10 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-white/5 to-white/0 border border-white/10">
             <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_white] animate-pulse"></div>
             <span className="text-[10px] font-semibold text-gray-200 uppercase tracking-widest">
@@ -113,7 +108,6 @@ export default function Welcome() {
           </div>
         </div>
 
-        {/* Brand Footer */}
         <div className="mt-8 text-center animate-in fade-in delay-300 duration-700">
           <div className="inline-flex items-center gap-2 opacity-40 grayscale hover:grayscale-0 hover:opacity-80 transition-all duration-500 cursor-default">
             <Image

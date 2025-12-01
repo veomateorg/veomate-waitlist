@@ -10,7 +10,6 @@ import {
   saveToLocalStorage,
 } from '@/lib/supabase';
 
-// Force dynamic rendering since we use Supabase
 export const dynamic = 'force-dynamic';
 
 function CompleteSignupForm() {
@@ -83,18 +82,15 @@ function CompleteSignupForm() {
   }, [searchParams, router]);
 
   useEffect(() => {
-    // Ensure video plays on mount
     if (videoRef.current) {
       const video = videoRef.current;
 
-      // Explicitly set muted to true for autoplay to work reliably
       video.defaultMuted = true;
       video.muted = true;
 
       video.play().catch((error) => {
-        // Ignore AbortError which happens when video is paused to save power
         if (error.name !== 'AbortError') {
-          console.error('Video autoplay failed:', error);
+          // Silent failure
         }
       });
     }
@@ -133,9 +129,7 @@ function CompleteSignupForm() {
     setError('');
 
     try {
-      // Check if we're using placeholder credentials
       if (isUsingPlaceholderCredentials()) {
-        // Use localStorage fallback for demo mode
         const result = saveToLocalStorage({
           email,
           first_name: formData.firstName,
@@ -156,12 +150,10 @@ function CompleteSignupForm() {
           return;
         }
 
-        // Redirect to success page
         router.push('/welcome');
         return;
       }
 
-      // Use Supabase for real database
       const { error: dbError } = await supabase
         .from('waitlist')
         .update({
@@ -180,16 +172,13 @@ function CompleteSignupForm() {
         .select();
 
       if (dbError) {
-        console.error('Database error:', dbError);
         setError('Failed to save your information. Please try again.');
         setLoading(false);
         return;
       }
 
-      // Redirect to success page
       router.push('/welcome');
     } catch (err) {
-      console.error('Error:', err);
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
@@ -201,7 +190,6 @@ function CompleteSignupForm() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-      {/* Global Video Background */}
       <div className="fixed inset-0 z-0">
         <video
           ref={videoRef}
@@ -217,20 +205,15 @@ function CompleteSignupForm() {
           <source src="/hero-video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-        {/* Blur Overlay */}
         <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
       </div>
 
-      {/* Docs Button */}
       <DocsButton />
 
-      {/* Main Card */}
       <div className="relative z-10 w-full max-w-4xl bg-black/60 backdrop-blur-md border border-white/10 rounded-xl sm:rounded-[1.5rem] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-500">
         <div className="flex flex-col md:flex-row">
-          {/* Left Side: Branding & Info */}
-          <div className="md:w-1/3 p-4 lg:p-8 flex flex-col justify-between bg-white/5 border-b md:border-b-0 md:border-r border-white/10">
+          <div className="md:w-1/3 p-4 lg:p-8 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
             <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0">
               <div className="bg-[#121212] p-2 rounded-lg sm:rounded-xl border border-white/10 shadow-inner w-fit md:mb-6 shrink-0">
                 <Image
@@ -274,7 +257,6 @@ function CompleteSignupForm() {
             </div>
           </div>
 
-          {/* Right Side: Form */}
           <div className="md:w-2/3 p-4 lg:p-8">
             <div className="mb-3 sm:mb-5 flex items-center justify-between">
               <h2 className="text-sm sm:text-base font-semibold text-white">
@@ -286,7 +268,6 @@ function CompleteSignupForm() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-4">
-              {/* Name Fields */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="space-y-0.5 sm:space-y-1">
                   <label
@@ -324,7 +305,6 @@ function CompleteSignupForm() {
                 </div>
               </div>
 
-              {/* Phone Number */}
               <div className="space-y-0.5 sm:space-y-1">
                 <label
                   htmlFor="phoneNumber"
@@ -343,7 +323,6 @@ function CompleteSignupForm() {
                     }
                   `}</style>
 
-                  {/* Custom Country Dropdown */}
                   <div className="relative">
                     {showCountryDropdown && (
                       <div
@@ -413,7 +392,6 @@ function CompleteSignupForm() {
                 </div>
               </div>
 
-              {/* Company & Role */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="space-y-0.5 sm:space-y-1">
                   <label
@@ -451,7 +429,6 @@ function CompleteSignupForm() {
                 </div>
               </div>
 
-              {/* Team Size & Source */}
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div className="space-y-0.5 sm:space-y-1">
                   <label

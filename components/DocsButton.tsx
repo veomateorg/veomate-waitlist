@@ -8,7 +8,6 @@ export default function DocsButton() {
   return (
     <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
       <div className="relative p-[1px] rounded-2xl overflow-hidden group">
-        {/* Spinning Gradient Border */}
         <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#0000_50%,#ffffff_100%)] opacity-70" />
 
         <button
