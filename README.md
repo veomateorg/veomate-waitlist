@@ -14,23 +14,9 @@ Work communication should be effortless and maintainable. Current tools force yo
 -   **Contextual Communication**: The chat sidebar automatically adapts to your focus. Click a node, and the conversation snaps to that specific context.
 -   **Structured Flexibility**: Combine the freedom of a whiteboard with the organization of structured task management.
 
-## Getting Started
+## Upcoming
 
-This is a [Next.js](https://nextjs.org) project.
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+We are currently in active development. Stay tuned for updates as we build the future of work.
 
 ## Learn More
 
