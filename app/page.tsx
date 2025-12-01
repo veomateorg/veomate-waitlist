@@ -120,7 +120,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-white mb-1 tracking-tight">
+                  <h1 className="text-2xl sm:text-3xl xl:text-4xl font-bold font-display text-white mb-1 tracking-tight">
                     VeoMate
                   </h1>
                   <p className="text-gray-400 text-xs sm:text-base font-medium max-w-[200px]">

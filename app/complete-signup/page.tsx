@@ -209,7 +209,7 @@ function CompleteSignupForm() {
                 />
               </div>
               <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-white mb-1 sm:mb-2">
+                <h1 className="text-lg sm:text-2xl font-bold font-display text-white mb-1 sm:mb-2">
                   You&apos;re on the list!
                 </h1>
                 <p className="text-gray-400 text-[10px] sm:text-xs leading-relaxed mb-2 sm:mb-6 hidden md:block">

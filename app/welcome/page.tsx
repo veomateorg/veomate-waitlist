@@ -84,7 +84,7 @@ export default function Welcome() {
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-bold font-display text-white mb-2 tracking-tight">
             You&apos;re In
           </h1>
           <p className="text-gray-400 text-xs sm:text-sm mb-8 font-medium">

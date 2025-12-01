@@ -68,7 +68,7 @@ export default function UserDocs() {
 
         <main className="flex-1 lg:pl-72 max-w-4xl">
           <section id="intro" className="mb-16 scroll-mt-28">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold font-display text-white mb-6">
               Welcome to VeoMate
             </h1>
             <p className="text-md text-gray-400 leading-relaxed mb-8">
