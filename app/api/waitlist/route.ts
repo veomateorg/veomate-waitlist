@@ -4,8 +4,8 @@ import { cookies } from 'next/headers';
 
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 
 const ipRateLimit = new Map<string, { count: number; lastReset: number }>();
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     if (submissionCount >= 5) {
       return NextResponse.json(
-        { error: 'You have reached the maximum limit of 5 email submissions.' },
+        { error: 'You have reached the maximum limit of 5 email submissions' },
         { status: 429 }
       );
     }
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 
     if (
       supabaseUrl === 'https://placeholder.supabase.co' ||
-      supabaseAnonKey === 'placeholder-anon-key'
+      supabaseKey === 'placeholder-anon-key'
     ) {
 
     } else {
@@ -102,7 +102,8 @@ export async function POST(request: Request) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       path: '/',
-      maxAge: 60 * 60 * 24 * 365,
+      maxAge: 0,
+    //   maxAge: 60 * 60 * 24 * 365,
     });
 
     return response;

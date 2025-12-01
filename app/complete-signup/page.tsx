@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
 import {
-  supabase,
   isUsingPlaceholderCredentials,
   saveToLocalStorage,
 } from '@/lib/supabase';
@@ -172,25 +171,22 @@ function CompleteSignupForm() {
         return;
       }
 
-      const { error: dbError } = await supabase
-        .from('waitlist')
-        .update({
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          country_code: formData.countryCode,
-          phone_number: formData.phoneNumber,
-          company_name: formData.companyName || null,
-          role: formData.role || null,
-          team_size: formData.teamSize || null,
-          hear_about: formData.hearAbout || null,
-          completed_signup: true,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('email', email)
-        .select();
+      // Call the secure API route
+      const response = await fetch('/api/complete-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          ...formData,
+        }),
+      });
 
-      if (dbError) {
-        setError('Failed to save your information. Please try again.');
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to save your information. Please try again.');
         setLoading(false);
         return;
       }

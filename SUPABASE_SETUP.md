@@ -33,16 +33,20 @@ Follow the setup steps below to connect to Supabase and switch from demo mode to
 4. Copy the following values:
    - **Project URL** (looks like: `https://xxxxxxxxxxxxx.supabase.co`)
    - **anon public** key (under "Project API keys")
+   - **service_role secret** key (under "Project API keys") - **Keep this secret!**
 
 ## Step 2: Configure Environment Variables
 
 1. Open `.env.local` in your project root
-2. Replace the placeholder values:
+2. Replace the placeholder values with your actual credentials:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
 ```
+
+**Note:** The `SUPABASE_SERVICE_ROLE_KEY` allows the server to bypass Row Level Security (RLS) policies, ensuring secure updates without exposing permissions to the public.
 
 ## Step 3: Create the Database Table
 
@@ -77,19 +81,6 @@ CREATE INDEX idx_waitlist_created_at ON waitlist(created_at DESC);
 -- Enable Row Level Security (RLS)
 ALTER TABLE waitlist ENABLE ROW LEVEL SECURITY;
 
--- Create a policy that allows anyone to insert
-CREATE POLICY "Allow public insert" ON waitlist
-  FOR INSERT
-  TO anon
-  WITH CHECK (true);
-
--- Create a policy that allows updates only by matching email
-CREATE POLICY "Allow update by email" ON waitlist
-  FOR UPDATE
-  TO anon
-  USING (true)
-  WITH CHECK (true);
-
 -- Create a function to automatically update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -107,6 +98,8 @@ CREATE TRIGGER update_waitlist_updated_at
 ```
 
 4. Click **Run** to execute the SQL
+
+**Important:** Since we are using the `service_role` key on the server, we do **NOT** need to create any public RLS policies (like "Allow public insert"). This keeps your database secure by default. Only your server (with the secret key) can read/write to this table.
 
 ## Step 4: Verify the Table
 
@@ -147,40 +140,11 @@ CREATE TRIGGER update_waitlist_updated_at
 | `created_at`       | TIMESTAMP | Yes (auto)           | When the record was created          |
 | `updated_at`       | TIMESTAMP | Yes (auto)           | When the record was last updated     |
 
-### How It Works
-
-1. **Initial Email Capture**: When a user enters their email on the home page, a new record is created with just the email and `completed_signup = false`.
-
-2. **Complete Signup**: If the user completes the additional details form, the existing record is updated with all the details and `completed_signup = true`.
-
-3. **Duplicate Prevention**: The email field has a UNIQUE constraint, so if a user submits the same email multiple times, it will update the existing record instead of creating duplicates.
-
-4. **Automatic Timestamps**: The `created_at` and `updated_at` fields are automatically managed by the database.
-
-## Security
-
-- **Row Level Security (RLS)** is enabled to control access to the data
-- Public users can insert new records (for initial email capture)
-- Public users can update records (for completing the signup)
-- You should create additional policies for admin access to view all records
-
-## Optional: Create Admin Policies
-
-If you want to view all waitlist entries from your Supabase dashboard or create an admin panel:
-
-```sql
--- Create a policy to allow authenticated users to read all data
-CREATE POLICY "Allow authenticated users to read all" ON waitlist
-  FOR SELECT
-  TO authenticated
-  USING (true);
-```
-
 ## Testing
 
 After setup, test the integration:
 
-1. Start your development server: `npm run dev`
+1. Restart your development server: `npm run dev` (to load new env vars)
 2. Visit `http://localhost:3000`
 3. Submit an email
 4. Check your Supabase dashboard **Table Editor** to see the new entry
@@ -196,20 +160,11 @@ After setup, test the integration:
 
 ### "permission denied for table waitlist"
 
-- Ensure Row Level Security policies are set up correctly
-- Check that the RLS policies allow public insert and update
+- Ensure you have added the `SUPABASE_SERVICE_ROLE_KEY` to your `.env.local` file.
+- If you are using only the `ANON_KEY`, you will need to add RLS policies (not recommended for this setup).
 
 ### "Failed to fetch"
 
 - Verify your environment variables are set correctly in `.env.local`
-- Make sure you're using the correct URL and anon key
+- Make sure you're using the correct URL and keys
 - Restart your development server after changing .env.local
-
-## Next Steps
-
-Once your database is set up:
-
-1. Test the complete signup flow
-2. Set up email notifications (optional)
-3. Create an admin dashboard to view waitlist entries (optional)
-4. Export data for marketing campaigns
