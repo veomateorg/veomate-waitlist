@@ -1,6 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VeoMate
+
+**The Context-Aware Canvas Platform.**
+
+VeoMate is an open-source initiative designed to eliminate context switching in modern workflows. We are building a platform that fuses the visual clarity of a canvas with the structured management of project tools and the real-time communication of chat applications.
+
+## Core Philosophy
+
+Work communication should be effortless and maintainable. Current tools force you to jump between tabs—diagrams in one place, tasks in another, and chats in a third. VeoMate unifies these into a single, cohesive interface.
+
+## Key Features
+
+-   **Visual Project Mapping**: Map your entire project structure using nodes and branches on an infinite canvas.
+-   **Contextual Communication**: The chat sidebar automatically adapts to your focus. Click a node, and the conversation snaps to that specific context.
+-   **Structured Flexibility**: Combine the freedom of a whiteboard with the organization of structured task management.
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org) project.
 
 First, run the development server:
 
@@ -16,21 +32,6 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Explore our documentation within the app to learn more about Spaces, Nodes, and our vision for the future of work.

@@ -171,7 +171,7 @@ function CompleteSignupForm() {
         return;
       }
 
-      // Call the secure API route
+
       const response = await fetch('/api/complete-signup', {
         method: 'POST',
         headers: {

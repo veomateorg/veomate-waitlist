@@ -14,12 +14,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-    // Check if we are in demo mode
+
     if (
       supabaseUrl === 'https://placeholder.supabase.co' ||
       supabaseKey === 'placeholder-anon-key'
     ) {
-      // In demo mode, success is simulated by the client
+
       return NextResponse.json({ success: true });
     }
 

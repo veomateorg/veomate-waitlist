@@ -103,7 +103,7 @@ export async function POST(request: Request) {
       sameSite: 'strict',
       path: '/',
       maxAge: 0,
-    //   maxAge: 60 * 60 * 24 * 365,
+
     });
 
     return response;
