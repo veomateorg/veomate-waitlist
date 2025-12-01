@@ -1,25 +1,45 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
 
 export default function Welcome() {
+  const router = useRouter();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isCheckingState, setIsCheckingState] = useState(true);
 
   useEffect(() => {
+    const state = localStorage.getItem('veomate_signup_state');
+    const savedEmail = localStorage.getItem('veomate_current_email');
+
+    if (!state) {
+      router.replace('/');
+    } else if (state === 'email_entered') {
+      if (savedEmail) {
+        router.replace(`/complete-signup?email=${encodeURIComponent(savedEmail)}`);
+      } else {
+        router.replace('/complete-signup');
+      }
+    } else {
+      setIsCheckingState(false);
+    }
+
     if (videoRef.current) {
       const video = videoRef.current;
       video.defaultMuted = true;
       video.muted = true;
       video.play().catch((error) => {
         if (error.name !== 'AbortError') {
-          // Silent failure
         }
       });
     }
-  }, []);
+  }, [router]);
+
+  if (isCheckingState) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative flex items-center justify-center p-4 overflow-hidden">
@@ -32,24 +52,21 @@ export default function Welcome() {
           playsInline
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ pointerEvents: 'none', opacity: 0.3 }}
+          style={{ pointerEvents: 'none', opacity: 0.5 }}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
           <source src="/hero-video.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 backdrop-blur-md bg-black/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/90"></div>
+        <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
       </div>
 
       <DocsButton />
 
       <div className="relative z-10 w-full max-w-sm">
-        <div className="group relative bg-black/20 backdrop-blur-3xl border border-white/10 rounded-[2.5rem] p-8 sm:p-10 text-center shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-700">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-white/40 blur-[20px] rounded-full group-hover:bg-white/60 transition-all duration-700"></div>
+        <div className="group relative bg-black/60 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-10 text-center shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-700">
 
           <div className="mb-6 relative inline-flex items-center justify-center">
-            <div className="absolute inset-0 bg-white/5 blur-xl rounded-full"></div>
             <div className="relative bg-white/5 p-3.5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] rotate-3 group-hover:rotate-0 transition-transform duration-500">
               <svg
                 className="w-6 h-6 text-white"
@@ -82,8 +99,11 @@ export default function Welcome() {
           </div>
 
           <div className="space-y-4">
-            <Link
-              href="/"
+            <button
+              onClick={() => {
+                localStorage.removeItem('veomate_signup_state');
+                router.push('/');
+              }}
               className="group relative w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-white text-black font-bold text-xs sm:text-sm hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]"
             >
               Back to Home
@@ -100,7 +120,7 @@ export default function Welcome() {
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 />
               </svg>
-            </Link>
+            </button>
 
             <p className="text-[10px] text-gray-600">
               Thanks a lot for investing in VeoMate!

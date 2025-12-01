@@ -18,8 +18,20 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isCheckingState, setIsCheckingState] = useState(true);
 
   useEffect(() => {
+    const state = localStorage.getItem('veomate_signup_state');
+    const savedEmail = localStorage.getItem('veomate_current_email');
+
+    if (state === 'email_entered' && savedEmail) {
+      router.replace(`/complete-signup?email=${encodeURIComponent(savedEmail)}`);
+    } else if (state === 'profile_completed') {
+      router.replace('/welcome');
+    } else {
+      setIsCheckingState(false);
+    }
+
     if (videoRef.current) {
       const video = videoRef.current;
 
@@ -28,11 +40,10 @@ export default function Home() {
 
       video.play().catch((error) => {
         if (error.name !== 'AbortError') {
-          // Silent failure
         }
       });
     }
-  }, []);
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,6 +64,8 @@ export default function Home() {
           return;
         }
 
+        localStorage.setItem('veomate_signup_state', 'email_entered');
+        localStorage.setItem('veomate_current_email', email);
         router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
         return;
       }
@@ -78,12 +91,18 @@ export default function Home() {
         return;
       }
 
+      localStorage.setItem('veomate_signup_state', 'email_entered');
+      localStorage.setItem('veomate_current_email', email);
       router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
     }
   };
+
+  if (isCheckingState) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] relative">
@@ -103,7 +122,6 @@ export default function Home() {
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
       </div>
 
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm:py-0 overflow-hidden">

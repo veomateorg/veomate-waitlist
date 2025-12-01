@@ -22,6 +22,7 @@ function CompleteSignupForm() {
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const [showTeamSizeDropdown, setShowTeamSizeDropdown] = useState(false);
   const [showSourceDropdown, setShowSourceDropdown] = useState(false);
+  const [isCheckingState, setIsCheckingState] = useState(true);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -74,14 +75,30 @@ function CompleteSignupForm() {
 
   useEffect(() => {
     const emailParam = searchParams.get('email');
-    if (!emailParam) {
-      router.push('/');
-    } else {
+    const savedEmail = localStorage.getItem('veomate_current_email');
+
+    if (emailParam) {
       setEmail(emailParam);
+      if (emailParam !== savedEmail) {
+        localStorage.setItem('veomate_current_email', emailParam);
+      }
+    } else if (savedEmail) {
+      setEmail(savedEmail);
+    } else {
+      router.push('/');
     }
   }, [searchParams, router]);
 
   useEffect(() => {
+    const state = localStorage.getItem('veomate_signup_state');
+    if (!state) {
+      router.replace('/');
+    } else if (state === 'profile_completed') {
+      router.replace('/welcome');
+    } else {
+      setIsCheckingState(false);
+    }
+
     if (videoRef.current) {
       const video = videoRef.current;
 
@@ -90,11 +107,10 @@ function CompleteSignupForm() {
 
       video.play().catch((error) => {
         if (error.name !== 'AbortError') {
-          // Silent failure
         }
       });
     }
-  }, []);
+  }, [router]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -107,6 +123,7 @@ function CompleteSignupForm() {
   };
 
   const handleSkip = () => {
+    localStorage.setItem('veomate_signup_state', 'profile_completed');
     router.push('/welcome');
   };
 
@@ -150,6 +167,7 @@ function CompleteSignupForm() {
           return;
         }
 
+        localStorage.setItem('veomate_signup_state', 'profile_completed');
         router.push('/welcome');
         return;
       }
@@ -177,6 +195,7 @@ function CompleteSignupForm() {
         return;
       }
 
+      localStorage.setItem('veomate_signup_state', 'profile_completed');
       router.push('/welcome');
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -184,7 +203,7 @@ function CompleteSignupForm() {
     }
   };
 
-  if (!email) {
+  if (!email || isCheckingState) {
     return null;
   }
 
@@ -206,7 +225,6 @@ function CompleteSignupForm() {
           Your browser does not support the video tag.
         </video>
         <div className="absolute inset-0 backdrop-blur-xs bg-black/10"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/30 via-transparent to-[#0a0a0a]/50"></div>
       </div>
 
       <DocsButton />
