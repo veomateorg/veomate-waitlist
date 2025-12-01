@@ -15,13 +15,7 @@ export async function POST(request: Request) {
     }
 
 
-    if (
-      supabaseUrl === 'https://placeholder.supabase.co' ||
-      supabaseKey === 'placeholder-anon-key'
-    ) {
 
-      return NextResponse.json({ success: true });
-    }
 
     const { error: dbError } = await supabase
       .from('waitlist')

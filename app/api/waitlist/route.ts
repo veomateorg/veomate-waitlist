@@ -63,35 +63,29 @@ export async function POST(request: Request) {
     }
 
 
-    if (
-      supabaseUrl === 'https://placeholder.supabase.co' ||
-      supabaseKey === 'placeholder-anon-key'
-    ) {
+    const { error: dbError } = await supabase
+      .from('waitlist')
+      .upsert(
+        {
+          email,
+          completed_signup: false,
+          updated_at: new Date().toISOString(),
+        },
+        {
+          onConflict: 'email',
+          ignoreDuplicates: false,
+        }
+      )
+      .select();
 
-    } else {
-      const { error: dbError } = await supabase
-        .from('waitlist')
-        .upsert(
-          {
-            email,
-            completed_signup: false,
-            updated_at: new Date().toISOString(),
-          },
-          {
-            onConflict: 'email',
-            ignoreDuplicates: false,
-          }
-        )
-        .select();
-
-      if (dbError) {
-        console.error('Supabase error:', dbError);
-        return NextResponse.json(
-          { error: 'Failed to save email. Please try again.' },
-          { status: 500 }
-        );
-      }
+    if (dbError) {
+      console.error('Supabase error:', dbError);
+      return NextResponse.json(
+        { error: 'Failed to save email. Please try again.' },
+        { status: 500 }
+      );
     }
+
 
 
     const response = NextResponse.json({ success: true });

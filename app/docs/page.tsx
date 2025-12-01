@@ -9,7 +9,7 @@ export default function UserDocs() {
 
   const sections = [
     { id: 'intro', title: 'Introduction' },
-    { id: 'preview', title: 'Demo Interface Preview' },
+    { id: 'preview', title: 'Interface Preview' },
     { id: 'concepts', title: 'Core Concepts' },
     { id: 'faq', title: 'Q&A' },
   ];
@@ -109,7 +109,7 @@ export default function UserDocs() {
 
           <section id="preview" className="mb-16 scroll-mt-28">
             <h2 className="text-3xl font-bold text-white mb-6">
-              Demo Interface Preview
+              Interface Preview
             </h2>
 
             <div className="w-full aspect-video rounded-xl border border-white/10 bg-veo-bg-dark overflow-hidden flex shadow-2xl relative select-none group">

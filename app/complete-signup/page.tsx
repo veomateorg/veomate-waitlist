@@ -4,10 +4,7 @@ import { useState, useEffect, Suspense, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
-import {
-  isUsingPlaceholderCredentials,
-  saveToLocalStorage,
-} from '@/lib/supabase';
+
 
 export const dynamic = 'force-dynamic';
 
@@ -145,33 +142,6 @@ function CompleteSignupForm() {
     setError('');
 
     try {
-      if (isUsingPlaceholderCredentials()) {
-        const result = saveToLocalStorage({
-          email,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          country_code: formData.countryCode,
-          phone_number: formData.phoneNumber,
-          company_name: formData.companyName || null,
-          role: formData.role || null,
-          team_size: formData.teamSize || null,
-          hear_about: formData.hearAbout || null,
-          completed_signup: true,
-          updated_at: new Date().toISOString(),
-        });
-
-        if (!result.success) {
-          setError('Failed to save your information. Please try again.');
-          setLoading(false);
-          return;
-        }
-
-        localStorage.setItem('veomate_signup_state', 'profile_completed');
-        router.push('/welcome');
-        return;
-      }
-
-
       const response = await fetch('/api/complete-signup', {
         method: 'POST',
         headers: {

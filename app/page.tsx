@@ -4,10 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
-import {
-  isUsingPlaceholderCredentials,
-  saveToLocalStorage,
-} from '@/lib/supabase';
+
 
 export const dynamic = 'force-dynamic';
 
@@ -52,33 +49,6 @@ export default function Home() {
 
 
     try {
-      if (isUsingPlaceholderCredentials()) {
-        const result = saveToLocalStorage({
-          email,
-          completed_signup: false,
-          updated_at: new Date().toISOString(),
-        });
-
-        if (!result.success) {
-          setError('Failed to save email. Please try again.');
-          setLoading(false);
-          return;
-        }
-        
-        const demoCount = parseInt(localStorage.getItem('veomate_submission_count') || '0', 10);
-        if (demoCount >= 5) {
-             setError('You have reached the maximum limit of 5 email submissions.');
-             setLoading(false);
-             return;
-        }
-        localStorage.setItem('veomate_submission_count', (demoCount + 1).toString());
-
-        localStorage.setItem('veomate_signup_state', 'email_entered');
-        localStorage.setItem('veomate_current_email', email);
-        router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
-        return;
-      }
-
       const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: {
@@ -97,9 +67,10 @@ export default function Home() {
 
       localStorage.setItem('veomate_signup_state', 'email_entered');
       localStorage.setItem('veomate_current_email', email);
-
       
       router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
+      return;
+
     } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);
