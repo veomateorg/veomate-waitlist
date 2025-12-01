@@ -1,6 +1,7 @@
 # QUICK FIX - RLS Policy Error
 
 ## Error You're Seeing:
+
 ```
 code: "42501"
 message: "new row violates row-level security policy for table \"waitlist\""
@@ -93,6 +94,7 @@ After running either option:
 ## Still Not Working?
 
 ### Check if the table exists:
+
 ```sql
 SELECT table_name
 FROM information_schema.tables
@@ -102,6 +104,7 @@ WHERE table_schema = 'public' AND table_name = 'waitlist';
 If it returns nothing, you need to create the table first. Run the SQL from `SUPABASE_SETUP.md`.
 
 ### Check current RLS status:
+
 ```sql
 SELECT tablename, rowsecurity
 FROM pg_tables
@@ -112,6 +115,7 @@ WHERE tablename = 'waitlist';
 - `rowsecurity = false` means RLS is disabled
 
 ### Check existing policies:
+
 ```sql
 SELECT * FROM pg_policies WHERE tablename = 'waitlist';
 ```
@@ -123,6 +127,7 @@ SELECT * FROM pg_policies WHERE tablename = 'waitlist';
 Row Level Security (RLS) is a Supabase security feature that controls who can access data. By default, it blocks all access unless you create policies that explicitly allow it.
 
 For a public waitlist form, you need to either:
+
 - **Disable RLS** (simpler, still secure enough for waitlists)
 - **Create policies** that allow anonymous users to insert/update
 
@@ -133,12 +138,14 @@ The anon key you're using already has limited permissions, so even with RLS disa
 ## Recommendation
 
 **For a waitlist:** Use Option 1 (Disable RLS)
+
 - Simpler to manage
 - Waitlist data isn't highly sensitive
 - Still protected by API key permissions
 - You can always enable RLS later if needed
 
 **For user accounts/sensitive data:** Use Option 2 (Enable RLS with policies)
+
 - More granular control
 - Better for multi-tenant apps
 - Required for apps with user authentication

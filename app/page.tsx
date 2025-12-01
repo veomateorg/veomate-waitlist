@@ -3,7 +3,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { supabase, isUsingPlaceholderCredentials, saveToLocalStorage } from '@/lib/supabase';
+import DocsButton from '@/components/DocsButton';
+import {
+  supabase,
+  isUsingPlaceholderCredentials,
+  saveToLocalStorage,
+} from '@/lib/supabase';
 
 // Force dynamic rendering since we use Supabase
 export const dynamic = 'force-dynamic';
@@ -19,23 +24,17 @@ export default function Home() {
     // Ensure video plays on mount
     if (videoRef.current) {
       const video = videoRef.current;
-      console.log('Video element found:', video);
-      console.log('Video src:', video.src);
-      console.log('Video readyState:', video.readyState);
+
+      // Explicitly set muted to true for autoplay to work reliably
+      video.defaultMuted = true;
+      video.muted = true;
 
       video.play().catch((error) => {
-        console.error('Video autoplay failed:', error);
+        // Ignore AbortError which happens when video is paused to save power
+        if (error.name !== 'AbortError') {
+          console.error('Video autoplay failed:', error);
+        }
       });
-
-      video.addEventListener('loadeddata', () => {
-        console.log('Video loaded successfully');
-      });
-
-      video.addEventListener('error', (e) => {
-        console.error('Video error:', e);
-      });
-    } else {
-      console.error('Video ref is null');
     }
   }, []);
 
@@ -51,7 +50,7 @@ export default function Home() {
         const result = saveToLocalStorage({
           email,
           completed_signup: false,
-          updated_at: new Date().toISOString()
+          updated_at: new Date().toISOString(),
         });
 
         if (!result.success) {
@@ -72,11 +71,11 @@ export default function Home() {
           {
             email,
             completed_signup: false,
-            updated_at: new Date().toISOString()
+            updated_at: new Date().toISOString(),
           },
           {
             onConflict: 'email',
-            ignoreDuplicates: false
+            ignoreDuplicates: false,
           }
         )
         .select();
@@ -124,28 +123,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-12 sm:py-0 overflow-hidden">
         {/* Docs Button */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50">
-          <div className="relative p-[1px] rounded-2xl overflow-hidden group">
-            {/* Spinning Gradient Border */}
-            <div className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#0000_50%,#ffffff_100%)] opacity-70" />
-            
-            <button
-              onClick={() => router.push('/docs')}
-              suppressHydrationWarning
-              className="relative flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 xl:px-6 xl:py-3 rounded-2xl bg-black/60 backdrop-blur-xl cursor-pointer border border-white/20 transition-all duration-300"
-            >
-              <span className="text-gray-200 font-medium text-sm sm:text-base">Docs</span>
-              <svg 
-                className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 transition-colors" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
-        </div>
+        <DocsButton />
 
         <div className="w-full max-w-3xl px-4 relative z-10">
           {/* Waitlist Card */}
@@ -165,8 +143,12 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-white mb-1 tracking-tight">VeoMate</h1>
-                  <p className="text-gray-400 text-xs sm:text-base font-medium max-w-[200px]">future of work and communication</p>
+                  <h1 className="text-2xl sm:text-3xl xl:text-4xl font-bold text-white mb-1 tracking-tight">
+                    VeoMate
+                  </h1>
+                  <p className="text-gray-400 text-xs sm:text-base font-medium max-w-[200px]">
+                    future of work and communication
+                  </p>
                 </div>
               </div>
 
@@ -179,11 +161,22 @@ export default function Home() {
               {/* Right Side: Form */}
               <div className="flex-1 w-full">
                 <div className="mb-3 sm:mb-4 xl:mb-6 text-left">
-                  <h3 className="text-md sm:text-xl font-semibold text-white sm:mb-1">Join the Waitlist</h3>
-                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">Support us and get <span className="text-white font-medium">1 month of Pro</span> for free</p>
+                  <h3 className="text-md sm:text-xl font-semibold text-white sm:mb-1">
+                    Join the Waitlist
+                  </h3>
+                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                    Support us and get{' '}
+                    <span className="text-white font-medium">
+                      1 month of Pro
+                    </span>{' '}
+                    for free
+                  </p>
                 </div>
-                
-                <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:gap-4">
+
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-3 sm:gap-4"
+                >
                   <div className="space-y-3 sm:space-y-4">
                     <div className="relative group/input">
                       <input
@@ -196,7 +189,7 @@ export default function Home() {
                         className="w-full px-3 py-2 sm:px-3 sm:py-2.5 xl:py-3.5 xl:px-4 rounded-xl border border-white/10 bg-white/5 focus:bg-white/10 focus:border-white/30 focus:outline-none text-white placeholder-gray-500 transition-all text-base"
                       />
                     </div>
-                    
+
                     <button
                       type="submit"
                       disabled={loading}
@@ -205,9 +198,24 @@ export default function Home() {
                     >
                       {loading ? (
                         <span className="flex items-center justify-center gap-2">
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin h-4 w-4"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           Joining...
                         </span>
@@ -217,7 +225,9 @@ export default function Home() {
                     </button>
                   </div>
                   {error && (
-                    <p className="text-red-400 text-xs text-center bg-red-500/10 border border-red-500/20 py-2 rounded-lg">{error}</p>
+                    <p className="text-red-400 text-xs text-center bg-red-500/10 border border-red-500/20 py-2 rounded-lg">
+                      {error}
+                    </p>
                   )}
                 </form>
               </div>

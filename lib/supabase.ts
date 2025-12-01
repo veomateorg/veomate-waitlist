@@ -1,8 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Use placeholder values during build time if environment variables are not set
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 
 // Check if we're using placeholder credentials
 export const isUsingPlaceholderCredentials = () => {
@@ -14,8 +16,12 @@ export const isUsingPlaceholderCredentials = () => {
 };
 
 if (isUsingPlaceholderCredentials()) {
-  console.warn('⚠️ Supabase credentials are not configured. Running in DEMO MODE with localStorage fallback.');
-  console.warn('📝 To connect to a real database, follow the instructions in SUPABASE_SETUP.md');
+  console.warn(
+    '⚠️ Supabase credentials are not configured. Running in DEMO MODE with localStorage fallback.'
+  );
+  console.warn(
+    '📝 To connect to a real database, follow the instructions in SUPABASE_SETUP.md'
+  );
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -46,14 +52,14 @@ export const saveToLocalStorage = (entry: Partial<WaitlistEntry>) => {
     const data: WaitlistEntry[] = existing ? JSON.parse(existing) : [];
 
     // Check if email already exists
-    const existingIndex = data.findIndex(item => item.email === entry.email);
+    const existingIndex = data.findIndex((item) => item.email === entry.email);
 
     if (existingIndex >= 0) {
       // Update existing entry
       data[existingIndex] = {
         ...data[existingIndex],
         ...entry,
-        updated_at: new Date().toISOString()
+        updated_at: new Date().toISOString(),
       };
     } else {
       // Add new entry
@@ -62,7 +68,7 @@ export const saveToLocalStorage = (entry: Partial<WaitlistEntry>) => {
         email: entry.email || '',
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
-        ...entry
+        ...entry,
       } as WaitlistEntry);
     }
 

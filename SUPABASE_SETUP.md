@@ -7,6 +7,7 @@ This guide will help you set up your Supabase database for the VeoMate waitlist.
 **The application currently runs in DEMO MODE** using localStorage as a fallback. This allows you to test the complete waitlist flow without setting up Supabase first.
 
 ### How Demo Mode Works:
+
 - All form submissions are saved to browser localStorage
 - Data persists in your browser (not shared across devices/browsers)
 - Perfect for testing the UI and flow
@@ -14,6 +15,7 @@ This guide will help you set up your Supabase database for the VeoMate waitlist.
 - View saved data in browser DevTools → Application → Local Storage → `veomate_waitlist_demo`
 
 ### To Enable Real Database:
+
 Follow the setup steps below to connect to Supabase and switch from demo mode to a real database.
 
 ---
@@ -129,21 +131,21 @@ CREATE TRIGGER update_waitlist_updated_at
 
 ### Fields
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `id` | UUID | Yes (auto) | Primary key, automatically generated |
-| `email` | TEXT | Yes | User's email address (unique) |
-| `first_name` | TEXT | No | User's first name |
-| `last_name` | TEXT | No | User's last name |
-| `country_code` | TEXT | No | Phone country code (e.g., +1, +91) |
-| `phone_number` | TEXT | No | User's phone number |
-| `company_name` | TEXT | No | User's company name |
-| `role` | TEXT | No | User's job role/title |
-| `team_size` | TEXT | No | Size of user's team |
-| `hear_about` | TEXT | No | How they heard about VeoMate |
-| `completed_signup` | BOOLEAN | Yes (default: false) | Whether user completed full signup |
-| `created_at` | TIMESTAMP | Yes (auto) | When the record was created |
-| `updated_at` | TIMESTAMP | Yes (auto) | When the record was last updated |
+| Field              | Type      | Required             | Description                          |
+| ------------------ | --------- | -------------------- | ------------------------------------ |
+| `id`               | UUID      | Yes (auto)           | Primary key, automatically generated |
+| `email`            | TEXT      | Yes                  | User's email address (unique)        |
+| `first_name`       | TEXT      | No                   | User's first name                    |
+| `last_name`        | TEXT      | No                   | User's last name                     |
+| `country_code`     | TEXT      | No                   | Phone country code (e.g., +1, +91)   |
+| `phone_number`     | TEXT      | No                   | User's phone number                  |
+| `company_name`     | TEXT      | No                   | User's company name                  |
+| `role`             | TEXT      | No                   | User's job role/title                |
+| `team_size`        | TEXT      | No                   | Size of user's team                  |
+| `hear_about`       | TEXT      | No                   | How they heard about VeoMate         |
+| `completed_signup` | BOOLEAN   | Yes (default: false) | Whether user completed full signup   |
+| `created_at`       | TIMESTAMP | Yes (auto)           | When the record was created          |
+| `updated_at`       | TIMESTAMP | Yes (auto)           | When the record was last updated     |
 
 ### How It Works
 
@@ -188,14 +190,17 @@ After setup, test the integration:
 ## Troubleshooting
 
 ### "relation 'waitlist' does not exist"
+
 - Make sure you ran the SQL query to create the table
 - Check that you're connected to the correct Supabase project
 
 ### "permission denied for table waitlist"
+
 - Ensure Row Level Security policies are set up correctly
 - Check that the RLS policies allow public insert and update
 
 ### "Failed to fetch"
+
 - Verify your environment variables are set correctly in `.env.local`
 - Make sure you're using the correct URL and anon key
 - Restart your development server after changing .env.local
@@ -203,6 +208,7 @@ After setup, test the integration:
 ## Next Steps
 
 Once your database is set up:
+
 1. Test the complete signup flow
 2. Set up email notifications (optional)
 3. Create an admin dashboard to view waitlist entries (optional)

@@ -19,6 +19,7 @@ This guide shows you how to view and manage waitlist data in Supabase.
 5. You'll see all submissions in a spreadsheet-like view
 
 **What you can do:**
+
 - View all entries
 - Sort by column (click column headers)
 - Filter data
@@ -153,6 +154,7 @@ After adding environment variables:
 You can also access your data via the Supabase API:
 
 ### REST API
+
 ```bash
 # Get all waitlist entries
 curl https://turarcxbrqccyhcszszv.supabase.co/rest/v1/waitlist \
@@ -161,6 +163,7 @@ curl https://turarcxbrqccyhcszszv.supabase.co/rest/v1/waitlist \
 ```
 
 ### JavaScript/TypeScript
+
 ```typescript
 import { createClient } from '@supabase/supabase-js';
 
@@ -187,11 +190,12 @@ Subscribe to changes in real-time:
 ```typescript
 const subscription = supabase
   .channel('waitlist-changes')
-  .on('postgres_changes',
+  .on(
+    'postgres_changes',
     {
       event: 'INSERT',
       schema: 'public',
-      table: 'waitlist'
+      table: 'waitlist',
     },
     (payload) => {
       console.log('New signup!', payload.new);
@@ -205,17 +209,20 @@ const subscription = supabase
 ## Export Data
 
 ### Method 1: From Table Editor
+
 1. Open Table Editor → `waitlist` table
 2. Click **Export** button
 3. Choose CSV format
 4. Download file
 
 ### Method 2: From SQL Editor
+
 1. Run a SELECT query
 2. Click **Download** button in results
 3. Choose format (CSV, JSON, etc.)
 
 ### Method 3: Using Supabase Studio
+
 1. Install Supabase CLI: `npm install -g supabase`
 2. Export table:
    ```bash
@@ -252,16 +259,19 @@ const subscription = supabase
 ## Troubleshooting
 
 ### Can't see data in Table Editor?
+
 - Check RLS policies are set up correctly
 - Try using SQL Editor with admin access
 - Make sure table was created successfully
 
 ### Netlify site not saving to database?
+
 - Verify environment variables are set in Netlify
 - Check browser console for errors
 - Ensure RLS policies allow public insert/update
 
 ### Want to access data from admin panel?
+
 See the "Admin Access" policy in SUPABASE_SETUP.md to allow authenticated users to read all data.
 
 ---

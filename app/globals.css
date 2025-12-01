@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #0a0a0a;
@@ -14,8 +14,8 @@
   /* VeoMate Brand Colors - Based on Logo */
   --color-veo-black: #000000;
   --color-veo-white: #ffffff;
-  --color-veo-gray: #9CA3AF;
-  --color-veo-silver: #D1D5DB;
+  --color-veo-gray: #9ca3af;
+  --color-veo-silver: #d1d5db;
   --color-veo-dark-gray: #374151;
   --color-veo-bg-dark: #0a0a0a;
   --color-veo-card-dark: #1a1a1a;
@@ -114,7 +114,8 @@ body {
 }
 
 @keyframes video-blur {
-  0%, 100% {
+  0%,
+  100% {
     filter: blur(12px);
   }
   50% {
