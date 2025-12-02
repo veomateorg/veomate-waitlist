@@ -18,6 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://waitlist.veomate.com'),
   title: {
     default: 'VeoMate Waitlist',
     template: '%s | VeoMate',
@@ -54,10 +55,18 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://veomate.com',
-    title: 'VeoMate - The Context-Aware Canvas Platform',
+    title: 'VeoMate Waitlist',
     description:
       'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
     siteName: 'VeoMate',
+    images: [
+      {
+        url: '/veomate-waitlist-og.png',
+        width: 1200,
+        height: 630,
+        alt: 'VeoMate Waitlist',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -65,6 +74,7 @@ export const metadata: Metadata = {
     description:
       'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
     creator: '@veomate',
+    images: ['/veomate-waitlist-og.png'],
   },
 };
 
