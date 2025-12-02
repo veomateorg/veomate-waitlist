@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: '%s | VeoMate',
   },
   description:
-    'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+    'The unified workspace fusing canvas, project management, and chat. Join the waitlist.',
   keywords: [
     'productivity',
     'canvas',
@@ -54,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://veomate.com',
+    url: 'https://veomate-waitlist.vercel.app',
     title: 'VeoMate Waitlist',
     description:
-      'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+      'The unified workspace fusing canvas, project management, and chat. Join the waitlist.',
     siteName: 'VeoMate',
     images: [
       {
-        url: '/veomate-waitlist-og.png',
+        url: 'https://veomate-waitlist.vercel.app/veomate-waitlist-og.png',
         width: 1200,
         height: 630,
         alt: 'VeoMate Waitlist',
@@ -70,11 +70,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VeoMate - The Context-Aware Canvas Platform',
+    title: 'VeoMate Waitlist',
     description:
-      'VeoMate eliminates context switching by fusing visual canvas, project management, and chat into one unified platform. Join the waitlist for the future of work.',
+      'The unified workspace fusing canvas, project management, and chat. Join the waitlist.',
     creator: '@veomate',
-    images: ['/veomate-waitlist-og.png'],
+    images: ['https://veomate-waitlist.vercel.app/veomate-waitlist-og.png'],
   },
 };
 
