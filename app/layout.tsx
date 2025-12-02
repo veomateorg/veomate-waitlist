@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://waitlist.veomate.com'),
+  metadataBase: new URL('https://veomate-waitlist.vercel.app'),
   title: {
     default: 'VeoMate Waitlist',
     template: '%s | VeoMate',
