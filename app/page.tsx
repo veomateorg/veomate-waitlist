@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
 
-
 export const dynamic = 'force-dynamic';
 
 export default function Home() {
@@ -21,7 +20,9 @@ export default function Home() {
     const savedEmail = localStorage.getItem('veomate_current_email');
 
     if (state === 'email_entered' && savedEmail) {
-      router.replace(`/complete-signup?email=${encodeURIComponent(savedEmail)}`);
+      router.replace(
+        `/complete-signup?email=${encodeURIComponent(savedEmail)}`
+      );
     } else if (state === 'profile_completed') {
       router.replace('/welcome');
     } else {
@@ -46,8 +47,6 @@ export default function Home() {
     setLoading(true);
     setError('');
 
-
-
     try {
       const response = await fetch('/api/waitlist', {
         method: 'POST',
@@ -67,10 +66,9 @@ export default function Home() {
 
       localStorage.setItem('veomate_signup_state', 'email_entered');
       localStorage.setItem('veomate_current_email', email);
-      
+
       router.push(`/complete-signup?email=${encodeURIComponent(email)}`);
       return;
-
     } catch {
       setError('An unexpected error occurred. Please try again.');
       setLoading(false);

@@ -12,7 +12,9 @@ export default function NotFound() {
 
     if (state === 'email_entered') {
       if (savedEmail) {
-        router.replace(`/complete-signup?email=${encodeURIComponent(savedEmail)}`);
+        router.replace(
+          `/complete-signup?email=${encodeURIComponent(savedEmail)}`
+        );
       } else {
         router.replace('/complete-signup');
       }

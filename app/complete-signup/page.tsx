@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import DocsButton from '@/components/DocsButton';
 
-
 export const dynamic = 'force-dynamic';
 
 function CompleteSignupForm() {
@@ -156,7 +155,9 @@ function CompleteSignupForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || 'Failed to save your information. Please try again.');
+        setError(
+          data.error || 'Failed to save your information. Please try again.'
+        );
         setLoading(false);
         return;
       }

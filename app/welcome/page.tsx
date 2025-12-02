@@ -18,7 +18,9 @@ export default function Welcome() {
       router.replace('/');
     } else if (state === 'email_entered') {
       if (savedEmail) {
-        router.replace(`/complete-signup?email=${encodeURIComponent(savedEmail)}`);
+        router.replace(
+          `/complete-signup?email=${encodeURIComponent(savedEmail)}`
+        );
       } else {
         router.replace('/complete-signup');
       }
@@ -65,7 +67,6 @@ export default function Welcome() {
 
       <div className="relative z-10 w-full max-w-sm">
         <div className="group relative bg-black/60 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-10 text-center shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-700">
-
           <div className="mb-6 relative inline-flex items-center justify-center">
             <div className="relative bg-white/5 p-3.5 rounded-2xl border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)] rotate-3 group-hover:rotate-0 transition-transform duration-500">
               <svg

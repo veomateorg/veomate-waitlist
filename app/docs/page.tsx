@@ -250,7 +250,8 @@ export default function UserDocs() {
                   <p className="text-gray-400 leading-relaxed mb-4">
                     The canvas is a visual area where you build your work using{' '}
                     <strong>nodes</strong> (blocks). Each node represents a part
-                    of your project (e.g., &quot;Auth Page&quot;, &quot;Landing Page&quot;).
+                    of your project (e.g., &quot;Auth Page&quot;, &quot;Landing
+                    Page&quot;).
                   </p>
                   <ul className="list-disc list-inside text-gray-400 space-y-2 bg-white/5 p-4 rounded-xl border border-white/5">
                     <li>
@@ -259,8 +260,8 @@ export default function UserDocs() {
                     </li>
                     <li>
                       <strong className="text-white">Sub-nodes:</strong> Smaller
-                      parts inside a node (e.g., &quot;Navbar&quot; inside &quot;Landing
-                      Page&quot;).
+                      parts inside a node (e.g., &quot;Navbar&quot; inside
+                      &quot;Landing Page&quot;).
                     </li>
                     <li>
                       <strong className="text-white">Branches:</strong>{' '}
@@ -308,9 +309,9 @@ export default function UserDocs() {
                   What are &quot;nodes&quot; and &quot;sub-nodes&quot;?
                 </h4>
                 <p className="text-gray-400">
-                  Nodes are project parts (e.g., &quot;Auth Page&quot;). Inside a node,
-                  you can create sub-nodes (e.g., &quot;Navbar&quot;). You can assign
-                  people to manage each node or sub-node.
+                  Nodes are project parts (e.g., &quot;Auth Page&quot;). Inside
+                  a node, you can create sub-nodes (e.g., &quot;Navbar&quot;).
+                  You can assign people to manage each node or sub-node.
                 </p>
               </div>
 
@@ -338,8 +339,9 @@ export default function UserDocs() {
                 </h4>
                 <p className="text-gray-400">
                   When someone opens a task, their canvas zooms into that area
-                  and the sidebar switches to that task&apos;s chat automatically.
-                  This zoom is personal and doesn&apos;t affect others.
+                  and the sidebar switches to that task&apos;s chat
+                  automatically. This zoom is personal and doesn&apos;t affect
+                  others.
                 </p>
               </div>
 
@@ -359,9 +361,9 @@ export default function UserDocs() {
                   Can this platform be used by developers only?
                 </h4>
                 <p className="text-gray-400">
-                  No! It&apos;s for any team-developers, designers, product managers,
-                  content teams, or even individuals. Anyone can visualize their
-                  work, assign parts, and communicate clearly.
+                  No! It&apos;s for any team-developers, designers, product
+                  managers, content teams, or even individuals. Anyone can
+                  visualize their work, assign parts, and communicate clearly.
                 </p>
               </div>
             </div>

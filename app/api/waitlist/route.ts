@@ -2,11 +2,13 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  'placeholder-anon-key';
 const supabase = createClient(supabaseUrl, supabaseKey);
-
 
 const ipRateLimit = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000;
@@ -28,10 +30,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-
     const cookieStore = await cookies();
     const submissionCookie = cookieStore.get('veomate_submission_count');
-    const submissionCount = submissionCookie ? parseInt(submissionCookie.value, 10) : 0;
+    const submissionCount = submissionCookie
+      ? parseInt(submissionCookie.value, 10)
+      : 0;
 
     if (submissionCount >= 5) {
       return NextResponse.json(
@@ -39,7 +42,6 @@ export async function POST(request: Request) {
         { status: 429 }
       );
     }
-
 
     const ip = getIp(request);
     if (ip !== 'unknown') {
@@ -61,7 +63,6 @@ export async function POST(request: Request) {
       record.count += 1;
       ipRateLimit.set(ip, record);
     }
-
 
     const { error: dbError } = await supabase
       .from('waitlist')
@@ -86,8 +87,6 @@ export async function POST(request: Request) {
       );
     }
 
-
-
     const response = NextResponse.json({ success: true });
     response.cookies.set({
       name: 'veomate_submission_count',
@@ -96,8 +95,7 @@ export async function POST(request: Request) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       path: '/',
-      maxAge: 0,
-
+      maxAge: 60 * 60 * 24 * 365,
     });
 
     return response;

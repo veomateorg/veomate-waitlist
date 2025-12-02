@@ -14,9 +14,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-
-
-
     const { error: dbError } = await supabase
       .from('waitlist')
       .update({

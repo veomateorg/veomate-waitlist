@@ -22,4 +22,3 @@ export interface WaitlistEntry {
   created_at?: string;
   updated_at?: string;
 }
-

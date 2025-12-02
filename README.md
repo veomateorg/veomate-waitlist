@@ -10,9 +10,9 @@ Work communication should be effortless and maintainable. Current tools force yo
 
 ## Key Features
 
--   **Visual Project Mapping**: Map your entire project structure using nodes and branches on an infinite canvas.
--   **Contextual Communication**: The chat sidebar automatically adapts to your focus. Click a node, and the conversation snaps to that specific context.
--   **Structured Flexibility**: Combine the freedom of a whiteboard with the organization of structured task management.
+- **Visual Project Mapping**: Map your entire project structure using nodes and branches on an infinite canvas.
+- **Contextual Communication**: The chat sidebar automatically adapts to your focus. Click a node, and the conversation snaps to that specific context.
+- **Structured Flexibility**: Combine the freedom of a whiteboard with the organization of structured task management.
 
 ## Upcoming
 
