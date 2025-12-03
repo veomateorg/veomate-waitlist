@@ -75,7 +75,12 @@ export const metadata: Metadata = {
     description:
       'The unified workspace fusing canvas, project management, and chat. Join the waitlist.',
     creator: '@veomate',
-    images: ['https://veomate-waitlist.vercel.app/veomate-waitlist-og.png'],
+    images: [
+      {
+        url: 'https://veomate-waitlist.vercel.app/veomate-waitlist-og.png',
+        alt: 'VeoMate Waitlist',
+      },
+    ],
   },
 };
 

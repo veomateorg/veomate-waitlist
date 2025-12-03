@@ -73,9 +73,9 @@ export default function UserDocs() {
             </h1>
             <p className="text-md text-gray-400 leading-relaxed mb-8">
               <span className="font-semibold text-gray-350">
-                VeoMate is the context-aware canvas platform designed to make
-                work communication effortless and totally maintainable for any
-                individual or organization.
+                VeoMate is a context-aware work platform designed to make
+                communication effortless and fully maintainable for individuals
+                and organizations
               </span>{' '}
               It kills context switching by fusing the visual diagramming of a
               canvas with the structured power of Jira and the communication of
