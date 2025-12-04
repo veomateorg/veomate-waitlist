@@ -122,7 +122,7 @@ export default function Home() {
                     VeoMate
                   </h1>
                   <p className="text-gray-400 text-xs sm:text-base font-medium max-w-[200px]">
-                    future of work and communication
+                    Future of work and communication
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function Home() {
                     Join the Waitlist
                   </h3>
                   <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                    Support us and get{' '}
+                    Join us early and get{' '}
                     <span className="text-white font-medium">
                       1 month of Pro
                     </span>{' '}
