@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://veomate-waitlist.vercel.app'),
+  metadataBase: new URL('https://waitlist.veomate.com'),
   title: {
     default: 'VeoMate Waitlist',
     template: '%s | VeoMate',
@@ -54,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://veomate-waitlist.vercel.app',
+    url: 'https://waitlist.veomate.com',
     title: 'VeoMate Waitlist',
     description:
       'The unified workspace fusing canvas, project management, and chat. Join the waitlist.',
     siteName: 'VeoMate',
     images: [
       {
-        url: 'https://veomate-waitlist.vercel.app/veomate-waitlist-og.png',
+        url: 'https://waitlist.veomate.com/veomate-waitlist-og.png',
         width: 1200,
         height: 630,
         alt: 'VeoMate Waitlist',
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     creator: '@veomate',
     images: [
       {
-        url: 'https://veomate-waitlist.vercel.app/veomate-waitlist-og.png',
+        url: 'https://waitlist.veomate.com/veomate-waitlist-og.png',
         alt: 'VeoMate Waitlist',
       },
     ],
