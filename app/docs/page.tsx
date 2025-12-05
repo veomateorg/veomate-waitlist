@@ -68,10 +68,10 @@ export default function UserDocs() {
 
         <main className="flex-1 lg:pl-72 max-w-4xl">
           <section id="intro" className="mb-16 scroll-mt-28">
-            <h1 className="text-3xl md:text-4xl font-bold font-display text-white mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold font-display text-white mb-3 sm:mb-6">
               Welcome to VeoMate
             </h1>
-            <p className="text-md text-gray-400 leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-8">
               <span className="font-semibold text-gray-350">
                 VeoMate is a context-aware work platform designed to make
                 communication effortless and fully maintainable for individuals
@@ -232,7 +232,7 @@ export default function UserDocs() {
                   </span>
                   Spaces
                 </h3>
-                <p className="text-gray-400 leading-relaxed pl-11">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed pl-11">
                   A space is like a team or workspace, similar to a Discord
                   server. You can create your own space, invite others, or join
                   existing ones. Each space has its own canvas and chats.
@@ -247,13 +247,13 @@ export default function UserDocs() {
                   The Canvas & Nodes
                 </h3>
                 <div className="pl-11">
-                  <p className="text-gray-400 leading-relaxed mb-4">
+                  <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
                     The canvas is a visual area where you build your work using{' '}
                     <strong>nodes</strong> (blocks). Each node represents a part
                     of your project (e.g., &quot;Auth Page&quot;, &quot;Landing
                     Page&quot;).
                   </p>
-                  <ul className="list-disc list-inside text-gray-400 space-y-2 bg-white/5 p-4 rounded-xl border border-white/5">
+                  <ul className="text-sm sm:text-base list-disc list-inside text-gray-400 space-y-2 bg-white/5 p-4 rounded-xl border border-white/5">
                     <li>
                       <strong className="text-white">Nodes:</strong> Main
                       project parts.
@@ -279,7 +279,7 @@ export default function UserDocs() {
                   </span>
                   Contextual Sidebar
                 </h3>
-                <p className="text-gray-400 leading-relaxed pl-11">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed pl-11">
                   The sidebar handles chats and automatically switches to the
                   related chat when you move between nodes. When you open a
                   node, your sidebar updates to match that specific context,
@@ -296,7 +296,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What exactly is this platform?
                 </h4>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   VeoMate is the visual project workspace that unifies planning,
                   management, and chat on a single canvas. Teams create
                   collaborative spaces and map their entire project structure
@@ -308,7 +308,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What are &quot;nodes&quot; and &quot;sub-nodes&quot;?
                 </h4>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   Nodes are project parts (e.g., &quot;Auth Page&quot;). Inside
                   a node, you can create sub-nodes (e.g., &quot;Navbar&quot;).
                   You can assign people to manage each node or sub-node.
@@ -319,7 +319,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Who can edit what?
                 </h4>
-                <ul className="text-gray-400 list-disc list-inside space-y-1 mt-2">
+                <ul className="text-sm sm:text-base text-gray-400 list-disc list-inside space-y-1 mt-2">
                   <li>
                     <strong>Space Owner:</strong> Full control.
                   </li>
@@ -337,7 +337,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   What happens when a user &quot;triggers&quot; a part?
                 </h4>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   When someone opens a task, their canvas zooms into that area
                   and the sidebar switches to that task&apos;s chat
                   automatically. This zoom is personal and doesn&apos;t affect
@@ -349,7 +349,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   How is this different from Discord, Figma, or Jira?
                 </h4>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   Discord lacks visual project views. Figma lacks structured
                   task management. VeoMate combines real-time visual work with
                   structured task management and roles.
@@ -360,7 +360,7 @@ export default function UserDocs() {
                 <h4 className="text-lg font-semibold text-white mb-2">
                   Can this platform be used by developers only?
                 </h4>
-                <p className="text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   No! It&apos;s for any team-developers, designers, product
                   managers, content teams, or even individuals. Anyone can
                   visualize their work, assign parts, and communicate clearly.
