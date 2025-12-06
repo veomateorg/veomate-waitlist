@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Space_Grotesk, Outfit } from 'next/font/google';
 import './globals.css';
+import GlobalFooterIcons from '@/components/GlobalFooterIcons';
 
 const outfit = Outfit({
   variable: '--font-outfit',
@@ -95,6 +96,7 @@ export default function RootLayout({
         className={`${outfit.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased selection:bg-white/20`}
       >
         {children}
+        <GlobalFooterIcons />
       </body>
     </html>
   );

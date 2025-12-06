@@ -2,16 +2,18 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { RiTwitterXFill } from "react-icons/ri";
 
 export default function UserDocs() {
   const [activeSection, setActiveSection] = useState('intro');
   const [demoStep, setDemoStep] = useState(0);
-
   const sections = [
     { id: 'intro', title: 'Introduction' },
     { id: 'preview', title: 'Interface Preview' },
     { id: 'concepts', title: 'Core Concepts' },
     { id: 'faq', title: 'Q&A' },
+    { id: 'team', title: 'Team' },
   ];
 
   useEffect(() => {
@@ -368,6 +370,61 @@ export default function UserDocs() {
               </div>
             </div>
           </section>
+
+          <section id="team" className="mb-16 scroll-mt-28">
+            <h2 className="text-3xl font-bold text-white mb-6">Team</h2>
+            <div className="space-y-4">
+              {[
+                { 
+                  name: 'SK Akram', 
+                  role: 'Co-Founder',
+                  socials: [
+                    { icon: FaGithub, url: 'https://github.com/akramcodez' },
+                    { icon: RiTwitterXFill, url: 'https://x.com/akramcodez' },
+                    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/akramcodez' }
+                  ]
+                },
+                { 
+                  name: 'Shabareesh Shetty', 
+                  role: 'Co-Founder',
+                  socials: [
+                    { icon: FaGithub, url: 'https://github.com/ShabiShett07' },
+                    { icon: RiTwitterXFill, url: 'https://x.com/shabishetty07' },
+                    { icon: FaLinkedin, url: '#' }
+                  ]
+                },
+              ].map((member) => (
+                <div
+                  key={member.name}
+                  className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-all"
+                >
+                  <div className="mb-4 sm:mb-0">
+                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-white/90 transition-colors">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-gray-400 font-mono tracking-wide">
+                      {member.role}
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center gap-5">
+                    {member.socials.map((social, index) => (
+                      <Link 
+                        key={index} 
+                        href={social.url}
+                        target="_blank"
+                        className="text-white/60 hover:text-white transition-colors transform hover:scale-110"
+                      >
+                        <social.icon size={22} />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+
         </main>
       </div>
     </div>
