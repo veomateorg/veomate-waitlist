@@ -390,7 +390,7 @@ export default function UserDocs() {
                   socials: [
                     { icon: FaGithub, url: 'https://github.com/ShabiShett07' },
                     { icon: RiTwitterXFill, url: 'https://x.com/shabishetty07' },
-                    { icon: FaLinkedin, url: '#' }
+                    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/shabareesh-shetty%F0%9F%87%AE%F0%9F%87%B3-063b57293' }
                   ]
                 },
               ].map((member) => (
