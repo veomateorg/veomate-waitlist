@@ -377,7 +377,6 @@ export default function UserDocs() {
               {[
                 { 
                   name: 'SK Akram', 
-                  role: 'Co-Founder',
                   socials: [
                     { icon: FaGithub, url: 'https://github.com/akramcodez' },
                     { icon: RiTwitterXFill, url: 'https://x.com/akramcodez' },
@@ -386,7 +385,6 @@ export default function UserDocs() {
                 },
                 { 
                   name: 'Shabareesh Shetty', 
-                  role: 'Co-Founder',
                   socials: [
                     { icon: FaGithub, url: 'https://github.com/ShabiShett07' },
                     { icon: RiTwitterXFill, url: 'https://x.com/shabishetty07' },
@@ -396,17 +394,11 @@ export default function UserDocs() {
               ].map((member) => (
                 <div
                   key={member.name}
-                  className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-all"
+                  className="group flex flex-wrap sm:items-center justify-between p-6 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.07] transition-all"
                 >
-                  <div className="mb-4 sm:mb-0">
-                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-white/90 transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm text-gray-400 font-mono tracking-wide">
-                      {member.role}
-                    </p>
-                  </div>
-                  
+                  <h3 className="text-xl font-bold text-white group-hover:text-white/90 transition-colors">
+                    {member.name}
+                  </h3>
                   <div className="flex items-center gap-5">
                     {member.socials.map((social, index) => (
                       <Link 
