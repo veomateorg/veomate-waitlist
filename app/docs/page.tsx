@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { RiTwitterXFill } from 'react-icons/ri';
 
 export default function UserDocs() {
   const [activeSection, setActiveSection] = useState('intro');
@@ -75,9 +75,9 @@ export default function UserDocs() {
             </h1>
             <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-8">
               <span className="font-semibold text-gray-350">
-                VeoMate is a context-aware work platform designed to make
-                communication effortless and fully maintainable for individuals
-                and organizations
+                VeoMate is a context-aware work platform designed to make work
+                and communication effortless and fully maintainable for
+                individuals and organizations
               </span>{' '}
               It kills context switching by fusing the visual diagramming of a
               canvas with the structured power of Jira and the communication of
@@ -299,10 +299,11 @@ export default function UserDocs() {
                   What exactly is this platform?
                 </h4>
                 <p className="text-sm sm:text-base text-gray-400">
-                  VeoMate is the visual project workspace that unifies planning,
-                  management, and chat on a single canvas. Teams create
-                  collaborative spaces and map their entire project structure
-                  using interactive nodes.
+                  VeoMate is a visual project workspace that combines planning,
+                  management, and communication on a single, context-aware
+                  canvas. Teams create shared spaces and map their entire
+                  workflow using interactive nodes, with chat and navigation
+                  updating automatically based on where they are working.
                 </p>
               </div>
 
@@ -353,8 +354,9 @@ export default function UserDocs() {
                 </h4>
                 <p className="text-sm sm:text-base text-gray-400">
                   Discord lacks visual project views. Figma lacks structured
-                  task management. VeoMate combines real-time visual work with
-                  structured task management and roles.
+                  task management and Jira lacks in perfect communication.
+                  VeoMate combines real-time visual work with structured task
+                  management, communication, and roles.
                 </p>
               </div>
 
@@ -375,21 +377,30 @@ export default function UserDocs() {
             <h2 className="text-3xl font-bold text-white mb-6">Team</h2>
             <div className="space-y-4">
               {[
-                { 
-                  name: 'SK Akram', 
+                {
+                  name: 'SK Akram',
                   socials: [
                     { icon: FaGithub, url: 'https://github.com/akramcodez' },
                     { icon: RiTwitterXFill, url: 'https://x.com/akramcodez' },
-                    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/akramcodez' }
-                  ]
+                    {
+                      icon: FaLinkedin,
+                      url: 'https://www.linkedin.com/in/akramcodez',
+                    },
+                  ],
                 },
-                { 
-                  name: 'Shabareesh Shetty', 
+                {
+                  name: 'Shabareesh Shetty',
                   socials: [
                     { icon: FaGithub, url: 'https://github.com/ShabiShett07' },
-                    { icon: RiTwitterXFill, url: 'https://x.com/shabishetty07' },
-                    { icon: FaLinkedin, url: 'https://www.linkedin.com/in/shabareesh-shetty%F0%9F%87%AE%F0%9F%87%B3-063b57293' }
-                  ]
+                    {
+                      icon: RiTwitterXFill,
+                      url: 'https://x.com/shabishetty07',
+                    },
+                    {
+                      icon: FaLinkedin,
+                      url: 'https://www.linkedin.com/in/shabareesh-shetty%F0%9F%87%AE%F0%9F%87%B3-063b57293',
+                    },
+                  ],
                 },
               ].map((member) => (
                 <div
@@ -401,8 +412,8 @@ export default function UserDocs() {
                   </h3>
                   <div className="flex items-center gap-5">
                     {member.socials.map((social, index) => (
-                      <Link 
-                        key={index} 
+                      <Link
+                        key={index}
                         href={social.url}
                         target="_blank"
                         className="text-white/60 hover:text-white transition-colors transform hover:scale-110"
@@ -415,8 +426,6 @@ export default function UserDocs() {
               ))}
             </div>
           </section>
-
-
         </main>
       </div>
     </div>
