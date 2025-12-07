@@ -221,8 +221,7 @@ function CompleteSignupForm() {
                   .
                   <br />
                   <br />
-                  Help us tailor your experience by completing your profile
-                  below.
+                  Help us tailor your experience by completing your profile.
                 </p>
                 <p className="text-gray-400 text-[10px] leading-tight mb-0 md:hidden">
                   You&apos;ve secured{' '}
