@@ -235,7 +235,7 @@ function CompleteSignupForm() {
             </div>
 
             <div className="hidden md:flex items-center gap-1 text-[10px] text-gray-500 bg-white/5 p-2.5 rounded-lg border border-white/5 mt-2 md:mt-0">
-              Waitlist joined as{' '}
+              joined as{' '}
               <span className="text-gray-300 font-medium truncate max-w-[140px]">
                 {email}
               </span>
