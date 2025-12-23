@@ -14,9 +14,14 @@ Work communication should be effortless and maintainable. Current tools force yo
 - **Contextual Communication**: The chat sidebar automatically adapts to your focus. Click a node, and the conversation snaps to that specific context.
 - **Structured Flexibility**: Combine the freedom of a whiteboard with the organization of structured task management.
 
-## Upcoming
+## Project Status
 
-We are currently in active development. Stay tuned for updates as we build the future of work.
+VeoMate is in early active development.
+
+Current focus:
+- Core canvas data model
+- Node based context handling
+- Context aware chat behavior
 
 ## Learn More
 
